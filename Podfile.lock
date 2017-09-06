@@ -1,0 +1,54 @@
+PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - FMDB (2.7.2):
+    - FMDB/standard (= 2.7.2)
+  - FMDB/standard (2.7.2)
+  - JPush (2.1.9)
+  - LKDBHelper (2.1.9):
+    - FMDB
+  - Masonry (1.0.2)
+  - MBProgressHUD (0.9.2)
+  - MJRefresh (3.1.12)
+  - SDWebImage (3.7.6):
+    - SDWebImage/Core (= 3.7.6)
+  - SDWebImage/Core (3.7.6)
+  - TKAlert&TKActionSheet (1.0.24)
+
+DEPENDENCIES:
+  - AFNetworking (~> 3.1.0)
+  - JPush (~> 2.1.6)
+  - LKDBHelper (~> 2.1.8)
+  - Masonry (~> 1.0.0)
+  - MBProgressHUD (~> 0.8)
+  - MJRefresh (~> 3.1.12)
+  - SDWebImage (~> 3.7.6)
+  - TKAlert&TKActionSheet (~> 1.0.23)
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  FMDB: 6198a90e7b6900cfc046e6bc0ef6ebb7be9236aa
+  JPush: 8bccf709ace4318a8e7008cc4fab42b706bfad46
+  LKDBHelper: 78e6c0de99f45375892223a334535d745a123dbd
+  Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
+  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
+  MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
+  SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
+  TKAlert&TKActionSheet: aac6b3a78faa9cdf2a0a10df34235a875f1c3661
+
+PODFILE CHECKSUM: ab5527317ada9b631bb50eb45cadb85f9b5d40b2
+
+COCOAPODS: 1.2.1

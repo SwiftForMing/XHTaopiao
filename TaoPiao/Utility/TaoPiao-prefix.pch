@@ -1,0 +1,92 @@
+//
+//  TaoPiao-prefix.pch
+//  TaoPiao
+//
+//  Created by 黎应明 on 2017/8/30.
+//  Copyright © 2017年 黎应明. All rights reserved.
+//
+
+#ifndef TaoPiao_prefix_pch
+#define TaoPiao_prefix_pch
+
+
+
+#endif /* TaoPiao_prefix_pch */
+
+#define FullScreen   [[UIScreen mainScreen] bounds]
+#define PublicImage(imageName) [Tool imageInPublic:(imageName)]
+
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
+#define UIColorFromRGBA(rgbValue, alphaValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:(float)(alphaValue)]
+//登录成功
+#define kLoginSuccess @"LoginSuccess"
+#define kTimeValue 60
+#define MARGIN 16
+//更新个人信息
+#define kUpdateUserInfo @"kUpdateUserInfo"
+//关于我们
+#define Wap_AboutDuobao @""
+
+
+/******* 消息通知名称 *******/
+#define kReachableNetworkStatusChange @"ReachableNetworkStatusChange" //网络状态改变
+
+/******* 各平台key值 *******/
+#define JGPushKey @"e5d8ed4f65c2338b804b298b"
+
+#define QQKey @""
+
+#define QQSecret @""
+
+#define WeiBoKey @""
+
+#define WeiBoSecret @""
+
+#define kMeiQiaAppKey @"9295c5b6d27c46505dcd1cbc626c9250"
+
+
+//key值
+#define WeiXinKey @""
+
+//密钥
+#define WeiXinSecret @""
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+
+#import <ShareSDK/ShareSDK.h>
+#import <ShareSDKConnector/ShareSDKConnector.h>
+#import "WXApi.h"
+#import "WeiboSDK.h"
+#import <TencentOpenAPI/QQApiInterface.h>
+#import <TencentOpenAPI/TencentOAuth.h>
+
+#import "HttpHelper.h"
+#import "MBProgressHUD.h"
+#import "JPUSHService.h"
+#import "MJRefresh.h"
+#import "IQKeyboardManager.h"
+#import "UIView+Additions.h"
+#import "UIView+Extend.h"
+#import "UIView+YYAdd.h"
+#import "NSObject+LKDBHelper.h"
+#import "NSDictionary+unicode.h"
+//#import "UIView+TYAlertView.h"
+#import "UIView+WhenTappedBlocks.h"
+#import "UIButton+TopDown.h"
+//#import "SDImageCache.h"
+//#import "UIImageView+WebCache.h"
+#import "UIImageView+WebCache.h"
+#import "UIImage+Color.h"
+#import "URLDefine.h"
+#import "MingLog.h"
+#import "NSDiction+External.h"
+#import "ShareManager.h"
+#import "NSDate-Utilities.h"
+#import "Tool.h"
+#import "Colours.h"
+
+
+#endif
