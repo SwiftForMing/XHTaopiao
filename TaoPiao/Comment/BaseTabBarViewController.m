@@ -29,10 +29,7 @@
     UITabBarItem *tabBarItem = [[UITabBarItem alloc] initWithTitle:title image:[UIImage imageNamed:tabBarImageNameNormal] selectedImage:[UIImage imageNamed:tabBarImageNameSelected]];
     tabBarItem.titlePositionAdjustment = UIOffsetMake(0, -2);
     homeVC.tabBarItem = tabBarItem;
-    
-
-    
-   
+       
     ClassifyViewController *classifyVC = [[ClassifyViewController alloc] initWithNibName:@"ClassifyViewController" bundle:nil];
     BaseNavViewController *classifyNav = [[BaseNavViewController alloc] initWithRootViewController:classifyVC];
     tabBarImageNameNormal = @"tab_new.png";
@@ -44,8 +41,8 @@
     
 
     
-    CouponViewController *couponVC = [[CouponViewController alloc] initWithNibName:@"CouponViewController" bundle:nil];
-    
+//    CouponViewController *couponVC = [[CouponViewController alloc] initWithNibName:@"CouponViewController" bundle:nil];
+    CouponViewController *couponVC = [[CouponViewController alloc]initWithTableViewStyle:1];
     BaseNavViewController *couponNav = [[BaseNavViewController alloc] initWithRootViewController:couponVC];
     tabBarImageNameNormal = @"tab_find.png";
     tabBarImageNameSelected = @"tab_find_selected.png";

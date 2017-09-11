@@ -20,23 +20,40 @@
     NSURL *url = [[NSURL alloc]initWithString:goodModel.good_header];
     [_headerImageView sd_setImageWithURL:url placeholderImage:nil];
     
-    _nameLabel.text = goodModel.good_name;
+    _goodNameLabel.text = goodModel.good_name;
     
     NSString *price =  [NSString stringWithFormat:@"劵后价￥%@",goodModel.after_coupons_price];
-    NSString *couponsPrice =  [NSString stringWithFormat:@"￥%@",goodModel.good_price];
-    NSString *lastPrice = [NSString stringWithFormat:@"%@%@",price,couponsPrice];
+    NSString *normalPrice =  [NSString stringWithFormat:@"￥%@",goodModel.good_price];
+    NSString *lastPrice = [NSString stringWithFormat:@"%@%@",price,normalPrice];
     //label的富文本
     NSMutableAttributedString *text1 = [[NSMutableAttributedString alloc] initWithString:lastPrice];
-    [text1 addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:NSMakeRange(0, text1.length)];
+    [text1 addAttributes:@{
+                         
+                         NSStrikethroughStyleAttributeName:@(NSUnderlineStyleThick),
+                         
+                         NSForegroundColorAttributeName:
+                             
+                             [UIColor lightGrayColor],
+                         
+                         NSBaselineOffsetAttributeName:
+                             
+                             @(0),
+                         
+                         NSFontAttributeName: [UIFont systemFontOfSize:12]
+                         
+                         } range:[lastPrice rangeOfString:normalPrice]];
+   
+    _goodPriceLabel.attributedText = text1;
     
-    [text1 addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, price.length)];
-    [text1 addAttribute:NSForegroundColorAttributeName value:[UIColor grayColor] range:NSMakeRange(price.length, couponsPrice.length)];
     
-    [text1 addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineByWord] range:NSMakeRange(price.length, couponsPrice.length)];
-    [text1 addAttribute:NSStrikethroughColorAttributeName value:[UIColor grayColor] range:NSMakeRange(price.length, couponsPrice.length)];
-    _priceLabel.attributedText = text1;
-    
-    _timeLabel.text = goodModel.valid_date;
+    NSString *couponPrice =  [NSString stringWithFormat:@"售价￥%@",goodModel.coupons_value];
+    NSString *giveBean =  [NSString stringWithFormat:@"赠送%@欢乐豆",goodModel.good_price];
+    NSString *coupon = [NSString stringWithFormat:@"%@%@",couponPrice,giveBean];
+    //label的富文本
+    NSMutableAttributedString *couponABS = [[NSMutableAttributedString alloc] initWithString:coupon];
+    [couponABS addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:[coupon rangeOfString:couponPrice]];
+    [couponABS addAttribute:NSForegroundColorAttributeName value:[UIColor yellowColor] range:[coupon rangeOfString:giveBean]];
+    _couponPriceLabel.attributedText = couponABS;
     
     _goodModel = goodModel;
     

@@ -98,11 +98,9 @@
     }
     MBProgressHUD * HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     HUD.labelText = @"加载中...";
-    
-    HttpHelper *helper = [HttpHelper helper];
     __weak BangdingViewController *weakSelf = self;
     // 1、注册 2、绑定公众号、找回密码 3、第三方授权登录
-    [helper getVerificationCodeByMobile:phoneStr
+    [HttpHelper getVerificationCodeByMobile:phoneStr
                                    type:@"3"
                                 success:^(NSDictionary *resultDic){
                                     [HUD hide:YES];
@@ -150,9 +148,9 @@
     
     MBProgressHUD * HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     HUD.labelText = @"绑定中...";
-    HttpHelper *helper = [HttpHelper helper];
+    
     __weak BangdingViewController *weakSelf = self;
-    [helper bangDingByWithLoginId:appIdStr
+    [HttpHelper bangDingByWithLoginId:appIdStr
                              type:typeStr
                           url_tel:_phoneText.text
                         auth_code:_codeText.text

@@ -18,6 +18,8 @@
     NSMutableArray *bannerArray;
     BOOL isBannerTwo;
     NSMutableArray *goodsArray;
+    NSMutableArray *discountArray;
+    int page;
 }
 @property (nonatomic, strong) BannerTableViewCell *bannerCell;
 @property (nonatomic, copy) NSString *bannerListFlag;
@@ -28,18 +30,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
+    page = 0;
     self.title = @"淘券";
     bannerArray = [NSMutableArray array];
     goodsArray = [NSMutableArray array];
+    discountArray = [NSMutableArray array];
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     [self getData];
+    [self setTabelViewRefresh];
 }
 
 -(void)getData{
      MLog(@"trytrytry");
-    HttpHelper *helper = [HttpHelper helper];
     __weak HomeViewController *weakSelf = self;
-    [helper getHttpWithUrlStr:URL_HomeBasics
+    [HttpHelper getHttpWithUrlStr:URL_HomeBasics
                       success:^(NSDictionary *resultDic){
                         if ([[resultDic objectForKey:@"status"] integerValue] == 0) {
                             
@@ -77,6 +85,41 @@
     
     NSArray *goodArray = [dic objectForKey:@"todayDiscount"];
     if (goodArray && goodArray.count > 0) {
+        if (discountArray.count > 0) {
+            [discountArray removeAllObjects];
+        }
+        for (NSDictionary *dic in goodArray)
+        {
+            MLog(@"goodArray:%@",dic);
+            HomeGoodModel *info = [dic objectByClass:[HomeGoodModel class]];
+            [discountArray addObject:info];
+        }
+    }
+    
+    
+    [self.tableView reloadData];
+}
+#pragma mark 获取历表数据
+-(void)getListData{
+    __weak HomeViewController *weakSelf = self;
+        [HttpHelper getHomeListDataWithPageNum:[NSString stringWithFormat:@"%d",page] limitNum:@"20" success:^(NSDictionary *resultDic) {
+            [weakSelf hideRefresh];
+            if ([[resultDic objectForKey:@"status"] integerValue] == 0) {
+                
+                [self handleloadListResult:resultDic];
+            }
+            
+        } fail:^(NSString *description) {
+            [weakSelf hideRefresh];
+            [Tool showPromptContent:@"网络出错了" onView:weakSelf.view];
+        }];
+}
+
+- (void)handleloadListResult:(NSDictionary *)resultDic
+{
+    NSDictionary *dic = [resultDic objectForKey:@"data"];
+    NSArray *goodArray = [dic objectForKey:@"goodsList"];
+    if (goodArray && goodArray.count > 0) {
         if (goodsArray.count > 0) {
             [goodsArray removeAllObjects];
         }
@@ -88,11 +131,18 @@
         }
     }
     
+    if (goodArray.count < 100) {
+        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+    }else{
+        [self.tableView.mj_footer resetNoMoreData];
+    }
     
-    [self.tableView reloadData];
+     page++;
+
+    //刷新
+    NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:2];
+    [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
 }
-
-
 #pragma mark tableViewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
@@ -215,6 +265,41 @@
     }
    
 }
+
+- (void)setTabelViewRefresh
+{
+    __unsafe_unretained UITableView *tableView = self.tableView;
+    __unsafe_unretained __typeof(self) weakSelf = self;
+    // 下拉刷新
+    tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        page = 1;
+        [weakSelf getListData];
+    }];
+    // 设置自动切换透明度(在导航栏下面自动隐藏)
+    tableView.mj_header.automaticallyChangeAlpha = YES;
+    [tableView.mj_header beginRefreshing];
+    // 上拉刷新
+    tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        [weakSelf getListData];
+        
+    }];
+    tableView.mj_footer.automaticallyHidden = YES;
+}
+
+- (void)hideRefresh
+{
+    
+    if([self.tableView.mj_footer isRefreshing])
+    {
+        [self.tableView.mj_footer endRefreshing];
+    }
+    if([self.tableView.mj_header isRefreshing])
+    {
+        [self.tableView.mj_header endRefreshing];
+    }
+}
+
+
 #pragma mark -
 
 - (void)bannerListDidChange:(NSArray *)array

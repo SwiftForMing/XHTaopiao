@@ -252,11 +252,10 @@
     }
     MBProgressHUD * HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     HUD.labelText = @"登录中...";
-    HttpHelper *helper = [HttpHelper helper];
     
-    NSString *telephone = _phoneText.text;
+//    NSString *telephone = _phoneText.text;
     __weak LoginViewController *weakSelf = self;
-    [helper loginByWithMobile:_phoneText.text
+    [HttpHelper loginByWithMobile:_phoneText.text
                      password:_pwdText.text
                      jpush_id:[JPUSHService registrationID]
                       success:^(NSDictionary *resultDic){
@@ -294,9 +293,8 @@
     MBProgressHUD * HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     HUD.labelText = @"登录中...";
     
-    HttpHelper *helper = [HttpHelper helper];
     __weak LoginViewController *weakSelf = self;
-    [helper thirdloginByWithLoginId:band_id
+    [HttpHelper thirdloginByWithLoginId:band_id
                           nick_name:nick_name
                         user_header:user_photo
                                type:band_type

@@ -27,11 +27,11 @@
     HttpHelper *helper = [[HttpHelper alloc] init];
     return helper;
 }
-
+#pragma mark - 拼接:URL_Server+keyURL
 /**
  * 拼接:URL_Server+keyURL
  */
-- (NSString *)getURL{
++ (NSString *)getURL{
     
     NSString *str =  URL_Server;
     
@@ -41,12 +41,12 @@
     
     return str;
 }
-
+#pragma mark - 获取版本号
 /**
  * 获取版本号
  * 本地版本号 >= 服务器版本号，表示新版本正在审核阶段
  */
-- (void)getVersion:(void (^)(NSDictionary *resultDic))success
++ (void)getVersion:(void (^)(NSDictionary *resultDic))success
               fail:(void (^)(NSString *description))fail
 {
     NSString *URLString = [NSMutableString stringWithFormat:@"%@%@", URL_Server_Still, URL_GetVersion];
@@ -58,7 +58,7 @@
  * 获取验证码
  * type:[1.注册,2.找回密码,3.修改电话号码和微信绑定]
  */
-- (void)getVerificationCodeByMobile:(NSString *)mobile
++ (void)getVerificationCodeByMobile:(NSString *)mobile
                                type:(NSString *)type
                             success:(void (^)(NSDictionary *resultDic))success
                                fail:(void (^)(NSString *description))fail
@@ -83,7 +83,7 @@
 /**
  * 注册
  */
-- (void)registerByWithMobile:(NSString *)mobile
++ (void)registerByWithMobile:(NSString *)mobile
                     password:(NSString *)password
            recommend_user_id:(NSString *)recommend_user_id
                    auth_code:(NSString *)auth_code
@@ -116,7 +116,7 @@
 /**
  * 手机号登录
  */
-- (void)loginByWithMobile:(NSString *)mobile
++ (void)loginByWithMobile:(NSString *)mobile
                  password:(NSString *)password
                  jpush_id:(NSString *)jpush_id
                   success:(void (^)(NSDictionary *resultDic))success
@@ -156,7 +156,7 @@
  * jpush_id :极光推送id(registrationId)
  * type:登陆形式[weixin,qq]
  */
-- (void)thirdloginByWithLoginId:(NSString *)app_login_id
++ (void)thirdloginByWithLoginId:(NSString *)app_login_id
                       nick_name:(NSString *)nick_name
                     user_header:(NSString *)user_header
                            type:(NSString *)type
@@ -205,7 +205,7 @@
 
 
 // 登录接口统一增加uuid， 客户编号，token保存
-- (void)loginWithAbsoluteURLString:(NSString *)absoluteURL
++ (void)loginWithAbsoluteURLString:(NSString *)absoluteURL
                          parameter:(NSMutableDictionary *)parameters
                            success:(void (^)(NSDictionary *resultDic))success
                               fail:(void (^)(NSString *description))fail
@@ -255,7 +255,7 @@
 /**
  * 找回密码
  */
-- (void)findPwdByWithMobile:(NSString *)mobile
++ (void)findPwdByWithMobile:(NSString *)mobile
                    password:(NSString *)password
                   auth_code:(NSString *)auth_code
                     success:(void (^)(NSDictionary *resultDic))success
@@ -281,7 +281,7 @@
 /**
  * 第三方绑定
  */
-- (void)bangDingByWithLoginId:(NSString *)app_login_id
++ (void)bangDingByWithLoginId:(NSString *)app_login_id
                          type:(NSString *)type
                       url_tel:(NSString *)url_tel
                     auth_code:(NSString *)auth_code
@@ -313,11 +313,11 @@
     [self postHttpWithDic:parameters urlStr:URLString success:success fail:fail];
 }
 
-
+#pragma mark - 拼接:URL_Server+keyURL
 /**
  * 拼接:URL_Server+keyURL
  */
-- (NSString *)getURLbyKey:(NSString *)URLKey{
++ (NSString *)getURLbyKey:(NSString *)URLKey{
     
     NSString *str = [NSMutableString stringWithFormat:@"%@%@", URL_Server, URLKey];
    /*
@@ -328,8 +328,10 @@
     
     return str;
 }
-
--(void)getSearchIDDataWithID:(NSString *)goodID
+#pragma mark - 获取分类相关数据
++(void)getSearchIDDataWithID:(NSString *)goodID
+                     pageNum:(NSString *)page
+                     limitNum:(NSString *)limit
                      success:(void (^)(NSDictionary *resultDic))success
                         fail:(void (^)(NSString *description))fail
 {
@@ -338,25 +340,30 @@
     if (goodID) {
         [parameters setObject:goodID forKey:@"goodsTypeId"];
     }else{
-        [parameters setObject:@"" forKey:@"goodsTypeId"];
+        MLog(@"缺少参赛goodID");
+    }
+    if (page) {
+        [parameters setObject:page forKey:@"pageNum"];
+    }else{
+        MLog(@"缺少参赛page");
+    }
+    if (limit) {
+        [parameters setObject:limit forKey:@"limitNum"];
+    }else{
+        MLog(@"缺少参赛page");;
     }
     
     //拼接:URL_Server+keyURL
     NSString *URLString = [self getURLbyKey:URL_GoodType];
     
     [self postHttpWithDic:parameters urlStr:URLString success:success fail:fail];
-    
-    
-    
-
-
-
 }
+
 /**
  * 获取关键字搜索数据
  *
  */
--(void)getSearchKeyDataWithKeyWord:(NSString *)key success:(void (^)(NSDictionary *resultDic))success
++(void)getSearchKeyDataWithKeyWord:(NSString *)key success:(void (^)(NSDictionary *resultDic))success
                           fail:(void (^)(NSString *description))fail
 {
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
@@ -374,8 +381,86 @@
 
 }
 
+#pragma mark - 获取首页相关数据
++(void)getHomeListDataWithPageNum:(NSString *)page
+                         limitNum:(NSString *)limit
+                          success:(void (^)(NSDictionary *resultDic))success
+                              fail:(void (^)(NSString *description))fail
+{
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    
+    if (page) {
+        [parameters setObject:page forKey:@"pageNum"];
+    }else{
+        MLog(@"缺少参赛page");
+    }
+    if (limit) {
+        [parameters setObject:limit forKey:@"limitNum"];
+    }else{
+        MLog(@"缺少参赛page");;
+    }
 
-- (void)getHttpWithUrlStr:(NSString *)urlStr
+    //拼接:URL_Server+keyURL
+    NSString *URLString = [self getURLbyKey:URL_Recommend];
+    
+    [self postHttpWithDic:parameters urlStr:URLString success:success fail:fail];
+    
+}
+
+#pragma mark - 获取优惠卷相关数据
++(void)getCouponListDataWithUserID:(NSString *)user_id
+                           PageNum:(NSString *)page
+                          limitNum:(NSString *)limit
+                           success:(void (^)(NSDictionary *resultDic))success
+                              fail:(void (^)(NSString *description))fail
+{
+    
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    if (user_id) {
+        [parameters setObject:user_id forKey:@"user_id"];
+    }else{
+        MLog(@"缺少参赛goodID");
+    }
+    if (page) {
+        [parameters setObject:page forKey:@"pageNum"];
+    }else{
+        MLog(@"缺少参赛page");
+    }
+    if (limit) {
+        [parameters setObject:limit forKey:@"limitNum"];
+    }else{
+        MLog(@"缺少参赛page");;
+    }
+    //拼接:URL_Server+keyURL
+    NSString *URLString = [self getURLbyKey:URL_MyCouponsList];
+    [self postHttpWithDic:parameters urlStr:URLString success:success fail:fail];
+    
+    
+}
+
++(void)getAddCouponDataWithUserID:(NSString *)user_id
+                   Coupons_secret:(NSString *)secret
+                          success:(void (^)(NSDictionary *resultDic))success
+                             fail:(void (^)(NSString *description))fail{
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    if (user_id) {
+        [parameters setObject:user_id forKey:@"user_id"];
+    }else{
+        MLog(@"缺少参赛goodID");
+    }
+    if (secret) {
+        [parameters setObject:secret forKey:@"coupons_secret"];
+    }else{
+        MLog(@"缺少参赛secret");
+    }
+        //拼接:URL_Server+keyURL
+    NSString *URLString = [self getURLbyKey:URL_AddCoupon];
+    [self postHttpWithDic:parameters urlStr:URLString success:success fail:fail];
+
+}
+
++ (void)getHttpWithUrlStr:(NSString *)urlStr
                   success:(void (^)(NSDictionary *resultDic))success
                      fail:(void (^)(NSString *description))fail
 {
@@ -383,7 +468,7 @@
     [self getHttpBaseQuestWithUrl:URLString success:success fail:fail];
 }
 
-- (void)getHttpBaseQuestWithUrl:(NSString *)urlstr
++ (void)getHttpBaseQuestWithUrl:(NSString *)urlstr
                         success:(void (^)(NSDictionary *resultDic))success
                            fail:(void (^)(NSString *description))fail
 {
@@ -395,7 +480,7 @@
 /**
  * Post请求数据
  */
-- (void)postHttpWithDic:(NSMutableDictionary *)parameter
++ (void)postHttpWithDic:(NSMutableDictionary *)parameter
                  urlStr:(NSString *)urlStr
                 success:(void (^)(NSDictionary *resultDic))success //成功
                    fail:(void (^)(NSString *description))fail      //失败

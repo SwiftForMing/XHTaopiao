@@ -12,7 +12,7 @@
 #import "GoodTypeModel.h"
 #import "HomeTopCell.h"
 #import "ClassifyTableViewController.h"
-@interface ClassifyViewController ()<UICollectionViewDelegateFlowLayout,UICollectionViewDataSource,UISearchBarDelegate,UISearchResultsUpdating,UISearchControllerDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface ClassifyViewController ()<UICollectionViewDelegateFlowLayout,UICollectionViewDataSource,UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 {
     NSMutableArray *_dataArray;
     NSMutableArray *_searchArray;
@@ -22,7 +22,7 @@
     
 }
 @property(nonatomic,strong)UICollectionView *collectionview;
-
+@property(nonatomic,strong)UITableView *myTableView;
 
 
 @end
@@ -48,7 +48,7 @@
 {
     self.view.hidden = NO;
     self.navigationController.navigationBarHidden = YES;
-    [self getData];
+    
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -59,8 +59,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.navigationBarHidden = YES;
-    
-    
     [self createSearchBar];
     _page = 0;
     _first = true;
@@ -69,6 +67,7 @@
     
     searchKey = @"";
     [self.view addSubview:self.collectionview];
+    [self getData];
     //注册Cell
     [self.collectionview registerNib:[UINib nibWithNibName:@"ClassifyCollectionViewCell" bundle:nil]  forCellWithReuseIdentifier:@"ClassifyCollectionViewCell"];
 }
@@ -86,50 +85,74 @@
     self.bar.barTintColor = [UIColor whiteColor];
     UITextField *searchField=[self.bar valueForKey:@"_searchField"];
     searchField.backgroundColor =  [[UIColor alloc]initWithRed:233/255.0 green:233/255.0  blue:233/255.0 alpha:1];
+   
 
 
 }
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
-    // 创建出搜索使用的表示图控制器
-    self.searchTVC = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
-    _searchTVC.tableView.dataSource = self;
-    _searchTVC.tableView.delegate = self;
-   
-    // 使用表示图控制器创建出搜索控制器
-    self.mySearchController = [[UISearchController alloc] initWithSearchResultsController:_searchTVC];
-    // 搜索框检测代理
-    //（这个需要遵守的协议是 <UISearchResultsUpdating> ，这个协议中只有一个方法，当搜索框中的值发生变化的时候，代理方法就会被调用）
-    _mySearchController.searchResultsUpdater = self;
-    _mySearchController.delegate = self;
-    _mySearchController.searchBar.placeholder = @"搜索";
-    _mySearchController.view.backgroundColor = [UIColor whiteColor];
-    //  _searchController.searchBar.delegate = self;
-    [self presentViewController:_mySearchController animated:YES completion:^{
-        // 当模态推出这个searchController的时候,需要把之前的searchBar隐藏,如果希望搜索的时候看不到热门搜索什么的,可以把这个页面给隐藏
-        self.bar.hidden = YES;
-        self.view.hidden = YES;
-        
-    }];
+    self.myTableView = [[UITableView alloc]initWithFrame:(CGRectMake(0, 64, ScreenWidth, ScreenHeight)) style:0];
+    _myTableView.dataSource = self;
+    _myTableView.delegate = self;
+    self.bar.showsCancelButton = YES;
+    self.bar.placeholder = @"搜索";
+    [self.view addSubview:_myTableView];
+ 
 }
 
-
-- (void)updateSearchResultsForSearchController:(UISearchController *)searchController
-{
-    searchKey = searchController.searchBar.text;
-    [self getSearchDataWithKey:searchController.searchBar.text];
-}
-
--(void)didDismissSearchController:(UISearchController *)searchController{
-    self.bar.hidden = NO;
-    self.view.hidden = NO;
-}
 
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
-    self.bar.hidden = NO;
-    self.view.hidden = NO;
+    searchBar.showsCancelButton = NO;
+    [searchBar resignFirstResponder];
+    [self.myTableView removeFromSuperview];
+}
+#pragma mark UISearchBarDelegate
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+
+{
+    [searchBar resignFirstResponder];
+    //    [self getSearchDataWithKey:searchBar.text];
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    searchKey = searchText;
+//    [self getSearchDataWithKey:searchText];
+    [self setTabelViewRefresh];
+}
+-(void)getSearchDataWithKey:(NSString *)key{
+    
+    __weak ClassifyViewController *weakSelf = self;
+    [HttpHelper getSearchKeyDataWithKeyWord:key success:^(NSDictionary *resultDic) {
+        [weakSelf hideRefresh];
+        if ([[resultDic objectForKey:@"status"] integerValue] == 0) {
+            MLog(@"resultDic:%@",resultDic);
+            [self handleloadSearchResult:resultDic];
+        }
+    } fail:^(NSString *description) {
+        [Tool showPromptContent:@"网络出错了" onView:weakSelf.view];
+    }];
+    
+}
+- (void)handleloadSearchResult:(NSDictionary *)resultDic
+{
+    NSDictionary *dic = [resultDic objectForKey:@"data"];
+    NSArray *goodArray = [dic objectForKey:@"goodsSearchList"];
+    if (goodArray) {
+        if (_searchArray.count > 0) {
+            [_searchArray removeAllObjects];
+        }
+        for (NSDictionary *dic in goodArray)
+        {
+            MLog(@"goodsSearchList:%@",dic);
+            HomeGoodModel *info = [dic objectByClass:[HomeGoodModel class]];
+            [_searchArray addObject:info];
+        }
+    }
+    [_myTableView reloadData];
+
 }
 
 // 设置搜索tableView section个数
@@ -191,63 +214,50 @@
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-
-    [_mySearchController.searchBar resignFirstResponder];
+    [self.bar resignFirstResponder];
 }
 
 
-#pragma mark UISearchBarDelegate
+#pragma mark - tableview 上下拉刷新
 
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-
-{   [searchBar resignFirstResponder];
-    [self getSearchDataWithKey:searchBar.text];
-   
-}
-
-
-
--(void)getSearchDataWithKey:(NSString *)key{
-    
-    HttpHelper *helper = [HttpHelper helper];
-    __weak ClassifyViewController *weakSelf = self;
-    [helper getSearchKeyDataWithKeyWord:key success:^(NSDictionary *resultDic) {
-        
-        if ([[resultDic objectForKey:@"status"] integerValue] == 0) {
-            MLog(@"resultDic:%@",resultDic);
-            [self handleloadSearchResult:resultDic];
-        }
-    } fail:^(NSString *description) {
-        [Tool showPromptContent:@"网络出错了" onView:weakSelf.view];
-    }];
-   
-}
-- (void)handleloadSearchResult:(NSDictionary *)resultDic
+- (void)setTabelViewRefresh
 {
-    NSDictionary *dic = [resultDic objectForKey:@"data"];
-    NSArray *goodArray = [dic objectForKey:@"goodsSearchList"];
-    if (goodArray) {
-        if (_searchArray.count > 0) {
-            [_searchArray removeAllObjects];
-        }
-        for (NSDictionary *dic in goodArray)
-        {
-            MLog(@"goodsSearchList:%@",dic);
-            HomeGoodModel *info = [dic objectByClass:[HomeGoodModel class]];
-            [_searchArray addObject:info];
-        }
-    }
-    [_searchTVC.tableView reloadData];
-    
-  
+    __unsafe_unretained UITableView *tableView = self.myTableView;
+    __unsafe_unretained __typeof(self) weakSelf = self;
+    // 下拉刷新
+    tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+//        pageNum = 1;
+        [weakSelf getSearchDataWithKey:searchKey];
+    }];
+    // 设置自动切换透明度(在导航栏下面自动隐藏)
+    tableView.mj_header.automaticallyChangeAlpha = YES;
+    [tableView.mj_header beginRefreshing];
+    // 上拉刷新
+    tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        [weakSelf getSearchDataWithKey:searchKey];
+        
+    }];
+    tableView.mj_footer.automaticallyHidden = YES;
 }
 
-#pragma mark 获取tableviewdata
+- (void)hideRefresh
+{
+    
+    if([_myTableView.mj_footer isRefreshing])
+    {
+        [_myTableView.mj_footer endRefreshing];
+    }
+    if([_myTableView.mj_header isRefreshing])
+    {
+        [_myTableView.mj_header endRefreshing];
+    }
+}
+
+#pragma mark 获取collectionview
 -(void)getData{
 
-    HttpHelper *helper = [HttpHelper helper];
     __weak ClassifyViewController *weakSelf = self;
-    [helper getHttpWithUrlStr:URL_HomeBasics
+    [HttpHelper getHttpWithUrlStr:URL_HomeBasics
                       success:^(NSDictionary *resultDic){
                           if ([[resultDic objectForKey:@"status"] integerValue] == 0) {
                               [weakSelf handleloadResult:resultDic];

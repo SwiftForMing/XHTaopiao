@@ -6,8 +6,8 @@
 //  Copyright © 2017年 黎应明. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "BaseTableViewController.h"
 
-@interface CouponViewController : BaseViewController
+@interface CouponViewController : BaseTableViewController
 
 @end

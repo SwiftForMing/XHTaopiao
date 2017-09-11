@@ -164,11 +164,10 @@
     MBProgressHUD * HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     HUD.labelText = @"获取验证码中...";
     
-    HttpHelper *helper = [HttpHelper helper];
     __weak ResigterViewController *weakSelf = self;
     
     //type:[1.注册,2.找回密码,3.修改电话号码和微信绑定]
-    [helper getVerificationCodeByMobile:phoneStr
+    [HttpHelper getVerificationCodeByMobile:phoneStr
                                    type:@"1"
                                 success:^(NSDictionary *resultDic){
                                     [HUD hide:YES];
@@ -229,9 +228,9 @@
     MBProgressHUD * HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     HUD.labelText = @"注册中...";
     
-    HttpHelper *helper = [HttpHelper helper];
+
     __weak ResigterViewController *weakSelf = self;
-    [helper registerByWithMobile:_phoneText.text
+    [HttpHelper registerByWithMobile:_phoneText.text
                         password:_pwdText.text
                recommend_user_id:recommendStr
                        auth_code:_codeText.text
@@ -253,9 +252,7 @@
 - (void)handleloadResult:(NSDictionary *)resultDic
 {
    
-    
-    HttpHelper *helper = [HttpHelper helper];
-    [helper loginByWithMobile:_phoneText.text
+    [HttpHelper loginByWithMobile:_phoneText.text
                      password:_pwdText.text
                      jpush_id:[JPUSHService registrationID]
                       success:^(NSDictionary *resultDic){

@@ -15,20 +15,20 @@
 *获取公共资源 get请求
 */
 
-- (void)getHttpWithUrlStr:(NSString *)urlStr
++ (void)getHttpWithUrlStr:(NSString *)urlStr
 success:(void (^)(NSDictionary *resultDic))success
                      fail:(void (^)(NSString *description))fail;
 
 /**
  *获取服务器接口
  */
-- (NSString *)getURL;
++ (NSString *)getURL;
 #pragma mark - System
 
 /**
  * 获取版本号
  */
-- (void)getVersion:(void (^)(NSDictionary *resultDic))success
++ (void)getVersion:(void (^)(NSDictionary *resultDic))success
               fail:(void (^)(NSString *description))fail;
 
 #pragma mark - 登录、注册、找回密码
@@ -36,14 +36,14 @@ success:(void (^)(NSDictionary *resultDic))success
 /**
  * 获取验证码
  */
-- (void)getVerificationCodeByMobile:(NSString *)mobile
++ (void)getVerificationCodeByMobile:(NSString *)mobile
                                type:(NSString *)type
                             success:(void (^)(NSDictionary *resultDic))success
                                fail:(void (^)(NSString *description))fail;
 /**
  * 注册
  */
-- (void)registerByWithMobile:(NSString *)mobile
++ (void)registerByWithMobile:(NSString *)mobile
                     password:(NSString *)password
            recommend_user_id:(NSString *)recommend_user_id
                    auth_code:(NSString *)auth_code
@@ -52,7 +52,7 @@ success:(void (^)(NSDictionary *resultDic))success
 /**
  * 登录
  */
-- (void)loginByWithMobile:(NSString *)mobile
++ (void)loginByWithMobile:(NSString *)mobile
                  password:(NSString *)password
                  jpush_id:(NSString *)jpush_id
                   success:(void (^)(NSDictionary *resultDic))success
@@ -63,7 +63,7 @@ success:(void (^)(NSDictionary *resultDic))success
  * jpush_id :极光推送id(registrationId)
  * type:登陆形式[weixin,qq]
  */
-- (void)thirdloginByWithLoginId:(NSString *)app_login_id
++ (void)thirdloginByWithLoginId:(NSString *)app_login_id
                       nick_name:(NSString *)nick_name
                     user_header:(NSString *)user_header
                            type:(NSString *)type
@@ -73,7 +73,7 @@ success:(void (^)(NSDictionary *resultDic))success
 /**
  * 找回密码
  */
-- (void)findPwdByWithMobile:(NSString *)mobile
++ (void)findPwdByWithMobile:(NSString *)mobile
                    password:(NSString *)password
                   auth_code:(NSString *)auth_code
                     success:(void (^)(NSDictionary *resultDic))success
@@ -82,25 +82,43 @@ success:(void (^)(NSDictionary *resultDic))success
 /**
  * 第三方绑定
  */
-- (void)bangDingByWithLoginId:(NSString *)app_login_id
++ (void)bangDingByWithLoginId:(NSString *)app_login_id
                          type:(NSString *)type
                       url_tel:(NSString *)url_tel
                     auth_code:(NSString *)auth_code
             recommend_user_id:(NSString *)recommend_user_id
                       success:(void (^)(NSDictionary *resultDic))success
                          fail:(void (^)(NSString *description))fail;
-
+#pragma mark - 获取分类相关数据
 
 /**
  * 关键字搜索
  */
--(void)getSearchKeyDataWithKeyWord:(NSString *)key
++(void)getSearchKeyDataWithKeyWord:(NSString *)key
                            success:(void (^)(NSDictionary *resultDic))success
                               fail:(void (^)(NSString *description))fail;
 /**
  * ID搜索
  */
--(void)getSearchIDDataWithID:(NSString *)goodID
++(void)getSearchIDDataWithID:(NSString *)goodID
+                     pageNum:(NSString *)page
+                    limitNum:(NSString *)limit
                      success:(void (^)(NSDictionary *resultDic))success
                         fail:(void (^)(NSString *description))fail;
+#pragma mark - 获取首页相关数据
+
++(void)getHomeListDataWithPageNum:(NSString *)page
+                         limitNum:(NSString *)limit
+                          success:(void (^)(NSDictionary *resultDic))success
+                             fail:(void (^)(NSString *description))fail;
+#pragma mark - 获取口袋相关数据
++(void)getCouponListDataWithUserID:(NSString *)user_id
+                           PageNum:(NSString *)page
+                          limitNum:(NSString *)limit
+                           success:(void (^)(NSDictionary *resultDic))success
+                              fail:(void (^)(NSString *description))fail;
++(void)getAddCouponDataWithUserID:(NSString *)user_id
+                   Coupons_secret:(NSString *)secret
+                          success:(void (^)(NSDictionary *resultDic))success
+                             fail:(void (^)(NSString *description))fail;
 @end

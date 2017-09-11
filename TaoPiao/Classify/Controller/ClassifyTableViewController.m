@@ -12,6 +12,7 @@
 @interface ClassifyTableViewController ()
 {
     NSMutableArray *_dataArray;
+    int page;
     
 }
 @end
@@ -27,21 +28,25 @@
     [super viewDidLoad];
     _dataArray = [NSMutableArray array];
     self.title = self.goodTitle;
-    [self getData];
+    page = 0;
+    [self setTabelViewRefresh];
     self.numOfSection = 2;
     self.hightForFooter = 20;
 }
 
 -(void)getData{
-    
-    HttpHelper *helper = [HttpHelper helper];
     __weak ClassifyTableViewController *weakSelf = self;
-    [helper getSearchIDDataWithID:self.goodID
-                      success:^(NSDictionary *resultDic){
-                          if ([[resultDic objectForKey:@"status"] integerValue] == 0) {
-                              [weakSelf handleloadResult:resultDic];
-                          }
-                      }fail:^(NSString *decretion){
+    [HttpHelper getSearchIDDataWithID:self.goodID
+                              pageNum:[NSString stringWithFormat:@"%d",page]
+                            limitNum:@"20"
+                             success:^(NSDictionary *resultDic){
+                                 [weakSelf hideRefresh];
+                                 if ([[resultDic objectForKey:@"status"] integerValue] == 0) {
+                                     
+                                     [weakSelf handleloadResult:resultDic];
+                              
+                                 }
+                               }fail:^(NSString *decretion){
                           [Tool showPromptContent:@"网络出错了" onView:weakSelf.view];
                       }];
 }
@@ -109,15 +114,47 @@
 
     MLog(@"btnTag%ld",(long)btn.tag);
 
-    
-
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
             return 140;
 }
+#pragma mark - tableview 上下拉刷新
 
+- (void)setTabelViewRefresh
+{
+    __unsafe_unretained UITableView *tableView = self.tableView;
+    __unsafe_unretained __typeof(self) weakSelf = self;
+    // 下拉刷新
+    tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        page = 1;
+        [weakSelf getData];
+        
+    }];
+    // 设置自动切换透明度(在导航栏下面自动隐藏)
+    tableView.mj_header.automaticallyChangeAlpha = YES;
+    [tableView.mj_header beginRefreshing];
+    // 上拉刷新
+    tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+       [weakSelf getData];
+        
+    }];
+    tableView.mj_footer.automaticallyHidden = YES;
+}
+
+- (void)hideRefresh
+{
+    
+    if([self.tableView.mj_footer isRefreshing])
+    {
+        [self.tableView.mj_footer endRefreshing];
+    }
+    if([self.tableView.mj_header isRefreshing])
+    {
+        [self.tableView.mj_header endRefreshing];
+    }
+}
 
 
 @end

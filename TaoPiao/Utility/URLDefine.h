@@ -72,7 +72,7 @@
 #pragma mark  口袋
 //获取优惠劵
 #define URL_MyCouponsList @"appInterface/getMyCouponsList.jhtml"
-
+#define URL_AddCoupon @"appInterface/addCoupons.jhtml"
 
 //获取版本号
 #define URL_GetVersion @"appInterface/getIosCheckStats.jhtml"

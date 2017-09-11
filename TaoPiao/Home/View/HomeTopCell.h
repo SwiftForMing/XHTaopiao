@@ -12,9 +12,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *goodPriceLabel;
 @property (weak, nonatomic) IBOutlet UIButton *likeBtn;
 @property(nonatomic,strong)HomeGoodModel *goodModel;
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
-@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *couponName;
+@property (weak, nonatomic) IBOutlet UILabel *goodNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *couponPriceLabel;
 @property (weak, nonatomic) IBOutlet UIButton *lqBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *headerImageView;
 @end
