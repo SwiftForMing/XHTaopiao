@@ -33,6 +33,7 @@
     [super viewDidLoad];
     page = 0;
     self.title = @"淘券";
+    [self hidenLeftBarButton];
     bannerArray = [NSMutableArray array];
     goodsArray = [NSMutableArray array];
     discountArray = [NSMutableArray array];

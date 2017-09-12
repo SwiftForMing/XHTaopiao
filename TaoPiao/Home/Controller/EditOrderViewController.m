@@ -190,5 +190,40 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 10;
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    
+    if (section == 3) {
+        return 30;
+    }else{
+        
+        return 0.0001;
+    }
+}
+- (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    if (section == 3) {
+        UIView *footView = [[UIView alloc]initWithFrame:(CGRectMake(0, 0, ScreenWidth, 30))];
+        footView.backgroundColor = [[UIColor alloc]initWithRed:233/255.0 green:233/255.0 blue:233/255.0 alpha:1];
+        UIImageView *electImageView = [[UIImageView alloc]initWithFrame:(CGRectMake(10, 10, 10, 10))];
+        electImageView.image = [UIImage imageNamed:@"icon_checkbox_selected"];
+        electImageView.contentMode = UIViewContentModeScaleAspectFill;
+        [footView addSubview:electImageView];
+        
+        UILabel *desLabel = [[UILabel alloc]initWithFrame:(CGRectMake(20, 5, ScreenWidth-50,20))];
+        NSString *str = @"我也阅读并同意《淘卷服务协议》";
+        NSMutableAttributedString *astr = [[NSMutableAttributedString alloc]initWithString:str];
+        [astr addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:[str rangeOfString:@"《淘卷服务协议》"]];
+        [astr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12] range:[str rangeOfString:str]];
+        [astr addAttribute:NSStrokeColorAttributeName value:[UIColor lightGrayColor]range:[str rangeOfString:str]];
+        desLabel.attributedText = astr;
+        [footView addSubview:desLabel];
+        return  footView;
+    }else{
+        
+        return nil;
+    }
+    
+}
+
 
 @end

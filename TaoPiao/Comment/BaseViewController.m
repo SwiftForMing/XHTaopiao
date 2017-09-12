@@ -101,7 +101,10 @@
     [leftItemControl addSubview:back];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftItemControl];
 }
-
+-(void)hidenLeftBarButton{
+    
+    self.navigationItem.leftBarButtonItem = nil;
+}
 
 - (void)leftBarButtonItemAction:(id)sender
 {

@@ -11,6 +11,7 @@
 @interface BaseViewController : UIViewController
 - (void)setRightBarButtonItem:(NSString *)title;
 - (void)setLeftBarButtonItemArrow;
+-(void)hidenLeftBarButton;
 - (void)setLeftBarButtonItem:(NSString *)title;
 - (void)setRightBarButtonItemMore;
 - (void)setRightBarButtonItemEdit;
