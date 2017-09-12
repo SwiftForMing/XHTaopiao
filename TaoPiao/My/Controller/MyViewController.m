@@ -10,13 +10,7 @@
 #import "MyHeaderView.h"
 #import "ClassifyTableViewCell.h"
 
-#import "MQChatViewManager.h"
-#import "MQChatDeviceUtil.h"
-#import <MeiQiaSDK/MeiQiaSDK.h>
-#import "NSArray+MQFunctional.h"
-#import "MQBundleUtil.h"
-#import "MQAssetUtil.h"
-#import "MQImageUtil.h"
+
 //#import "BTBadgeView.h"
 @interface MyViewController ()<BaseTableViewDelegate>
 

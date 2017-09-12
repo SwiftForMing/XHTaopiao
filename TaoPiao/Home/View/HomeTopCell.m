@@ -15,8 +15,6 @@
    [_likeBtn verticalImageAndTitle:2];
 }
 -(void)setGoodModel:(HomeGoodModel *)goodModel{
-    
-    
     NSURL *url = [[NSURL alloc]initWithString:goodModel.good_header];
     [_headerImageView sd_setImageWithURL:url placeholderImage:nil];
     
@@ -24,9 +22,9 @@
     
     NSString *price =  [NSString stringWithFormat:@"劵后价￥%@",goodModel.after_coupons_price];
     NSString *normalPrice =  [NSString stringWithFormat:@"￥%@",goodModel.good_price];
-    NSString *lastPrice = [NSString stringWithFormat:@"%@%@",price,normalPrice];
+    _goodPriceLabel.text  = price;
     //label的富文本
-    NSMutableAttributedString *text1 = [[NSMutableAttributedString alloc] initWithString:lastPrice];
+    NSMutableAttributedString *text1 = [[NSMutableAttributedString alloc] initWithString:normalPrice];
     [text1 addAttributes:@{
                          
                          NSStrikethroughStyleAttributeName:@(NSUnderlineStyleThick),
@@ -39,11 +37,11 @@
                              
                              @(0),
                          
-                         NSFontAttributeName: [UIFont systemFontOfSize:12]
+                         NSFontAttributeName: [UIFont systemFontOfSize:10]
                          
-                         } range:[lastPrice rangeOfString:normalPrice]];
+                         } range:[normalPrice rangeOfString:normalPrice]];
    
-    _goodPriceLabel.attributedText = text1;
+    _afterPriceLabel.attributedText = text1;
     
     
     NSString *couponPrice =  [NSString stringWithFormat:@"售价￥%@",goodModel.coupons_value];
@@ -56,6 +54,8 @@
     _couponPriceLabel.attributedText = couponABS;
     
     _goodModel = goodModel;
+    
+   
     
 }
 

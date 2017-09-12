@@ -11,6 +11,7 @@
 @interface HomeTopCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *goodPriceLabel;
 @property (weak, nonatomic) IBOutlet UIButton *likeBtn;
+@property (weak, nonatomic) IBOutlet UILabel *afterPriceLabel;
 @property(nonatomic,strong)HomeGoodModel *goodModel;
 @property (weak, nonatomic) IBOutlet UILabel *couponName;
 @property (weak, nonatomic) IBOutlet UILabel *goodNameLabel;

@@ -12,7 +12,8 @@
 #import "HomeTopCell.h"
 #import "BannerInfo.h"
 #import "HomeGoodModel.h"
-
+#import "GetCouponViewController.h"
+#import "GoodDetailViewController.h"
 @interface HomeViewController (){
     
     NSMutableArray *bannerArray;
@@ -63,6 +64,7 @@
     NSDictionary *dic = [resultDic objectForKey:@"data"];
     
     NSArray *banArray = [dic objectForKey:@"advertisementList"];
+    
     if (banArray && banArray.count > 0) {
         if (bannerArray.count > 0) {
             [bannerArray removeAllObjects];
@@ -120,7 +122,7 @@
     NSDictionary *dic = [resultDic objectForKey:@"data"];
     NSArray *goodArray = [dic objectForKey:@"goodsList"];
     if (goodArray && goodArray.count > 0) {
-        if (goodsArray.count > 0) {
+        if (goodsArray.count > 0&&page == 1) {
             [goodsArray removeAllObjects];
         }
         for (NSDictionary *dic in goodArray)
@@ -214,12 +216,13 @@
             {
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"HomeTopCell" owner:nil options:nil];
                 cell = [nib objectAtIndex:0];
-                //设点点击选择的颜色(无)
-                HomeGoodModel *model = [goodsArray objectAtIndex:indexPath.row];
-                cell.goodModel = model;
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
             }
-            
+            //设点点击选择的颜色(无)
+            HomeGoodModel *model = [goodsArray objectAtIndex:indexPath.row];
+            cell.goodModel = model;
+            [cell.lqBtn addTarget:self action:@selector(lqBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+            cell.lqBtn.tag = indexPath.row;
             return cell;
         }
             break;
@@ -266,6 +269,22 @@
    
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    if (indexPath.section == 2) {
+        GoodDetailViewController *vc = [[GoodDetailViewController alloc]initWithTableViewStyle:0];
+        vc.goodModel = [goodsArray objectAtIndex:indexPath.row];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+
+#pragma mark - 领取操作
+-(void)lqBtnClick:(UIButton *)btn{
+    GetCouponViewController *vc = [[GetCouponViewController alloc]initWithTableViewStyle:0];
+    vc.goodModel = [goodsArray objectAtIndex:btn.tag];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+#pragma mark - 上下刷新
 - (void)setTabelViewRefresh
 {
     __unsafe_unretained UITableView *tableView = self.tableView;

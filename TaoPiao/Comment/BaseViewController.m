@@ -50,7 +50,7 @@
                                             style:UIBarButtonItemStylePlain
                                            target:self
                                            action:@selector(rightBarButtonItemAction:)];
-    
+    rightButton.tintColor = [UIColor blackColor];
     self.navigationItem.rightBarButtonItem = rightButton;
 }
 

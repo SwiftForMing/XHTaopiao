@@ -9,6 +9,24 @@
 /* Begin PBXBuildFile section */
 		263A03F94BC28D9DB0E5CBB3 /* libPods-TaoPiaoUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 971F0A4F75A12BD0CA286B9C /* libPods-TaoPiaoUITests.a */; };
 		32CCF4EA150012486352932A /* libPods-TaoPiao.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46CAA4FB2C6D38D0894EC42E /* libPods-TaoPiao.a */; };
+		3C0D38721F677627003B9070 /* GetCouponViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D38711F677627003B9070 /* GetCouponViewController.m */; };
+		3C0D387B1F677715003B9070 /* GetCouponOneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D38791F677715003B9070 /* GetCouponOneCell.m */; };
+		3C0D387C1F677715003B9070 /* GetCouponOneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C0D387A1F677715003B9070 /* GetCouponOneCell.xib */; };
+		3C0D38801F67772E003B9070 /* GetCouponTwoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D387E1F67772E003B9070 /* GetCouponTwoCell.m */; };
+		3C0D38811F67772E003B9070 /* GetCouponTwoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C0D387F1F67772E003B9070 /* GetCouponTwoCell.xib */; };
+		3C0D38841F67B16C003B9070 /* GoodDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D38831F67B16C003B9070 /* GoodDetailViewController.m */; };
+		3C0D38881F67B19B003B9070 /* GoodDetialHaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D38861F67B19B003B9070 /* GoodDetialHaderCell.m */; };
+		3C0D38891F67B19B003B9070 /* GoodDetialHaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C0D38871F67B19B003B9070 /* GoodDetialHaderCell.xib */; };
+		3C0D388D1F67CDC8003B9070 /* EditOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D388C1F67CDC8003B9070 /* EditOrderViewController.m */; };
+		3C0D38921F67CE05003B9070 /* EditAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D38901F67CE05003B9070 /* EditAddressCell.m */; };
+		3C0D38931F67CE05003B9070 /* EditAddressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C0D38911F67CE05003B9070 /* EditAddressCell.xib */; };
+		3C0D38971F67D01C003B9070 /* SimGoodCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D38951F67D01C003B9070 /* SimGoodCell.m */; };
+		3C0D38981F67D01C003B9070 /* SimGoodCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C0D38961F67D01C003B9070 /* SimGoodCell.xib */; };
+		3C0D389C1F67D22B003B9070 /* HaveCouponCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D389A1F67D22B003B9070 /* HaveCouponCell.m */; };
+		3C0D389D1F67D22B003B9070 /* HaveCouponCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C0D389B1F67D22B003B9070 /* HaveCouponCell.xib */; };
+		3C0D38A11F67D407003B9070 /* GoodPriceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D389F1F67D407003B9070 /* GoodPriceCell.m */; };
+		3C0D38A21F67D407003B9070 /* GoodPriceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C0D38A01F67D407003B9070 /* GoodPriceCell.xib */; };
+		3C0D38A61F67E009003B9070 /* AddAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D38A41F67E009003B9070 /* AddAddressViewController.m */; };
 		3C1678001F5D068F004307E4 /* ShareSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C1677D81F5D068F004307E4 /* ShareSDK.framework */; };
 		3C1678011F5D068F004307E4 /* ShareSDKConfigFile.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3C1677DB1F5D068F004307E4 /* ShareSDKConfigFile.bundle */; };
 		3C1678021F5D068F004307E4 /* ShareSDKConfigFile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C1677DC1F5D068F004307E4 /* ShareSDKConfigFile.framework */; };
@@ -330,6 +348,35 @@
 		0278628F2196419C0E8409B4 /* Pods-TaoPiaoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaoPiaoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TaoPiaoUITests/Pods-TaoPiaoUITests.release.xcconfig"; sourceTree = "<group>"; };
 		06981E18863F9F2BABBD2FA9 /* Pods-TaoPiao.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaoPiao.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TaoPiao/Pods-TaoPiao.debug.xcconfig"; sourceTree = "<group>"; };
 		34EBA1BCE030AE621F01313E /* libPods-TaoPiaoUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TaoPiaoUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C0D38701F677627003B9070 /* GetCouponViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetCouponViewController.h; sourceTree = "<group>"; };
+		3C0D38711F677627003B9070 /* GetCouponViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetCouponViewController.m; sourceTree = "<group>"; };
+		3C0D38781F677715003B9070 /* GetCouponOneCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetCouponOneCell.h; sourceTree = "<group>"; };
+		3C0D38791F677715003B9070 /* GetCouponOneCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetCouponOneCell.m; sourceTree = "<group>"; };
+		3C0D387A1F677715003B9070 /* GetCouponOneCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GetCouponOneCell.xib; sourceTree = "<group>"; };
+		3C0D387D1F67772E003B9070 /* GetCouponTwoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetCouponTwoCell.h; sourceTree = "<group>"; };
+		3C0D387E1F67772E003B9070 /* GetCouponTwoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetCouponTwoCell.m; sourceTree = "<group>"; };
+		3C0D387F1F67772E003B9070 /* GetCouponTwoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GetCouponTwoCell.xib; sourceTree = "<group>"; };
+		3C0D38821F67B16C003B9070 /* GoodDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodDetailViewController.h; sourceTree = "<group>"; };
+		3C0D38831F67B16C003B9070 /* GoodDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodDetailViewController.m; sourceTree = "<group>"; };
+		3C0D38851F67B19B003B9070 /* GoodDetialHaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodDetialHaderCell.h; sourceTree = "<group>"; };
+		3C0D38861F67B19B003B9070 /* GoodDetialHaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodDetialHaderCell.m; sourceTree = "<group>"; };
+		3C0D38871F67B19B003B9070 /* GoodDetialHaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoodDetialHaderCell.xib; sourceTree = "<group>"; };
+		3C0D388B1F67CDC8003B9070 /* EditOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditOrderViewController.h; sourceTree = "<group>"; };
+		3C0D388C1F67CDC8003B9070 /* EditOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditOrderViewController.m; sourceTree = "<group>"; };
+		3C0D388F1F67CE05003B9070 /* EditAddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditAddressCell.h; sourceTree = "<group>"; };
+		3C0D38901F67CE05003B9070 /* EditAddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditAddressCell.m; sourceTree = "<group>"; };
+		3C0D38911F67CE05003B9070 /* EditAddressCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditAddressCell.xib; sourceTree = "<group>"; };
+		3C0D38941F67D01C003B9070 /* SimGoodCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimGoodCell.h; sourceTree = "<group>"; };
+		3C0D38951F67D01C003B9070 /* SimGoodCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimGoodCell.m; sourceTree = "<group>"; };
+		3C0D38961F67D01C003B9070 /* SimGoodCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimGoodCell.xib; sourceTree = "<group>"; };
+		3C0D38991F67D22B003B9070 /* HaveCouponCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HaveCouponCell.h; sourceTree = "<group>"; };
+		3C0D389A1F67D22B003B9070 /* HaveCouponCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HaveCouponCell.m; sourceTree = "<group>"; };
+		3C0D389B1F67D22B003B9070 /* HaveCouponCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HaveCouponCell.xib; sourceTree = "<group>"; };
+		3C0D389E1F67D407003B9070 /* GoodPriceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodPriceCell.h; sourceTree = "<group>"; };
+		3C0D389F1F67D407003B9070 /* GoodPriceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodPriceCell.m; sourceTree = "<group>"; };
+		3C0D38A01F67D407003B9070 /* GoodPriceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoodPriceCell.xib; sourceTree = "<group>"; };
+		3C0D38A31F67E009003B9070 /* AddAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddAddressViewController.h; sourceTree = "<group>"; };
+		3C0D38A41F67E009003B9070 /* AddAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAddressViewController.m; sourceTree = "<group>"; };
 		3C1677D81F5D068F004307E4 /* ShareSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDK.framework; sourceTree = "<group>"; };
 		3C1677DB1F5D068F004307E4 /* ShareSDKConfigFile.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ShareSDKConfigFile.bundle; sourceTree = "<group>"; };
 		3C1677DC1F5D068F004307E4 /* ShareSDKConfigFile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKConfigFile.framework; sourceTree = "<group>"; };
@@ -974,6 +1021,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C0D388A1F67CD94003B9070 /* Pay */ = {
+			isa = PBXGroup;
+			children = (
+				3C0D388B1F67CDC8003B9070 /* EditOrderViewController.h */,
+				3C0D388C1F67CDC8003B9070 /* EditOrderViewController.m */,
+				3C0D38A31F67E009003B9070 /* AddAddressViewController.h */,
+				3C0D38A41F67E009003B9070 /* AddAddressViewController.m */,
+			);
+			name = Pay;
+			sourceTree = "<group>";
+		};
+		3C0D388E1F67CDD1003B9070 /* PayViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				3C0D388F1F67CE05003B9070 /* EditAddressCell.h */,
+				3C0D38901F67CE05003B9070 /* EditAddressCell.m */,
+				3C0D38911F67CE05003B9070 /* EditAddressCell.xib */,
+				3C0D38941F67D01C003B9070 /* SimGoodCell.h */,
+				3C0D38951F67D01C003B9070 /* SimGoodCell.m */,
+				3C0D38961F67D01C003B9070 /* SimGoodCell.xib */,
+				3C0D38991F67D22B003B9070 /* HaveCouponCell.h */,
+				3C0D389A1F67D22B003B9070 /* HaveCouponCell.m */,
+				3C0D389B1F67D22B003B9070 /* HaveCouponCell.xib */,
+				3C0D389E1F67D407003B9070 /* GoodPriceCell.h */,
+				3C0D389F1F67D407003B9070 /* GoodPriceCell.m */,
+				3C0D38A01F67D407003B9070 /* GoodPriceCell.xib */,
+			);
+			name = PayViewCell;
+			sourceTree = "<group>";
+		};
 		3C1677D71F5D068F004307E4 /* ShareSDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -2118,6 +2195,11 @@
 			children = (
 				3CC9740F1F5660F600351819 /* HomeViewController.h */,
 				3CC974101F5660F600351819 /* HomeViewController.m */,
+				3C0D38701F677627003B9070 /* GetCouponViewController.h */,
+				3C0D38711F677627003B9070 /* GetCouponViewController.m */,
+				3C0D38821F67B16C003B9070 /* GoodDetailViewController.h */,
+				3C0D38831F67B16C003B9070 /* GoodDetailViewController.m */,
+				3C0D388A1F67CD94003B9070 /* Pay */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2136,6 +2218,7 @@
 		3CC973E41F565A6000351819 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3C0D388E1F67CDD1003B9070 /* PayViewCell */,
 				3C8D505D1F5E4B9F00B78247 /* BannerTableViewCell.h */,
 				3C8D505E1F5E4B9F00B78247 /* BannerTableViewCell.m */,
 				3C8D505F1F5E4B9F00B78247 /* BannerTableViewCell.xib */,
@@ -2145,6 +2228,15 @@
 				3C8D50671F5E532400B78247 /* HomeTopCell.h */,
 				3C8D50681F5E532400B78247 /* HomeTopCell.m */,
 				3C8D50691F5E532400B78247 /* HomeTopCell.xib */,
+				3C0D38851F67B19B003B9070 /* GoodDetialHaderCell.h */,
+				3C0D38861F67B19B003B9070 /* GoodDetialHaderCell.m */,
+				3C0D38871F67B19B003B9070 /* GoodDetialHaderCell.xib */,
+				3C0D38781F677715003B9070 /* GetCouponOneCell.h */,
+				3C0D38791F677715003B9070 /* GetCouponOneCell.m */,
+				3C0D387A1F677715003B9070 /* GetCouponOneCell.xib */,
+				3C0D387D1F67772E003B9070 /* GetCouponTwoCell.h */,
+				3C0D387E1F67772E003B9070 /* GetCouponTwoCell.m */,
+				3C0D387F1F67772E003B9070 /* GetCouponTwoCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2848,26 +2940,33 @@
 				3C1678041F5D068F004307E4 /* ShareSDKUI.bundle in Resources */,
 				3CC975031F56698800351819 /* PhotoItemView.xib in Resources */,
 				3CF14D401F5949BE00D997A9 /* LoginViewController.xib in Resources */,
+				3C0D38981F67D01C003B9070 /* SimGoodCell.xib in Resources */,
 				3C8B996F1F66388100E0429A /* Info.plist in Resources */,
 				3C1678011F5D068F004307E4 /* ShareSDKConfigFile.bundle in Resources */,
 				3C8D506B1F5E532400B78247 /* HomeTopCell.xib in Resources */,
 				3C16780C1F5D068F004307E4 /* WeiboSDK.bundle in Resources */,
 				3C16780E1F5D068F004307E4 /* README.txt in Resources */,
 				3CC974FC1F56698800351819 /* PB.bundle in Resources */,
+				3C0D38A21F67D407003B9070 /* GoodPriceCell.xib in Resources */,
 				3CC973FB1F565D5600351819 /* SafariViewController.xib in Resources */,
 				3C8D50611F5E4B9F00B78247 /* BannerTableViewCell.xib in Resources */,
 				3CC9751C1F56698800351819 /* CoreSVP.bundle in Resources */,
 				3CF14D421F5949BE00D997A9 /* ResigterViewController.xib in Resources */,
 				3C8B99771F6638B200E0429A /* LaunchScreen.storyboard in Resources */,
 				3CC9751F1F56698800351819 /* SVProgressHUD.bundle in Resources */,
+				3C0D38891F67B19B003B9070 /* GoodDetialHaderCell.xib in Resources */,
+				3C0D38811F67772E003B9070 /* GetCouponTwoCell.xib in Resources */,
 				3C6341C41F5EA9BD0083B5AD /* ClassifyTableViewCell.xib in Resources */,
+				3C0D389D1F67D22B003B9070 /* HaveCouponCell.xib in Resources */,
 				3C8B99781F6638B200E0429A /* Main.storyboard in Resources */,
 				3CF14D3C1F5949BE00D997A9 /* BangdingViewController.xib in Resources */,
 				3C16780A1F5D068F004307E4 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				3C8B997A1F6638C800E0429A /* Assets.xcassets in Resources */,
 				3C1679681F5D2991004307E4 /* MQChatViewAsset.bundle.zip in Resources */,
 				3CC975071F56698800351819 /* PhotoBroswerVC.xib in Resources */,
+				3C0D387C1F677715003B9070 /* GetCouponOneCell.xib in Resources */,
 				3C1678101F5D068F004307E4 /* ShareSDK.bundle in Resources */,
+				3C0D38931F67CE05003B9070 /* EditAddressCell.xib in Resources */,
 				3C790E121F58012800AA0744 /* MyHeaderView.xib in Resources */,
 				3CC974FB1F56698800351819 /* CoreSDWebImage.bundle in Resources */,
 				3CC974481F56654C00351819 /* IQKeyboardManager.bundle in Resources */,
@@ -3040,6 +3139,7 @@
 				3C1679771F5D2991004307E4 /* MQChatViewController.m in Sources */,
 				3C1679A21F5D2991004307E4 /* MQRichTextViewCell.m in Sources */,
 				3CC97E381F56AE5F00351819 /* NSDiction+External.m in Sources */,
+				3C0D38A61F67E009003B9070 /* AddAddressViewController.m in Sources */,
 				3CC974401F56654C00351819 /* IQKeyboardManager.m in Sources */,
 				3C1679A01F5D2991004307E4 /* MQImageMessageCell.m in Sources */,
 				3C1679D41F5D2991004307E4 /* MQToast.m in Sources */,
@@ -3086,6 +3186,7 @@
 				3CC974F11F56698800351819 /* UIImage+Extend.m in Sources */,
 				3C790E3A1F58FA2F00AA0744 /* NSString+MD5.m in Sources */,
 				3C1679C41F5D2991004307E4 /* MEIQIA_MLAudioRecorder.m in Sources */,
+				3C0D38971F67D01C003B9070 /* SimGoodCell.m in Sources */,
 				3CF14D291F590C0700D997A9 /* NSDate-Utilities.m in Sources */,
 				3CC9743B1F56654C00351819 /* IQNSArray+Sort.m in Sources */,
 				3CC975021F56698800351819 /* PhotoItemView.m in Sources */,
@@ -3129,6 +3230,7 @@
 				3C16799F1F5D2991004307E4 /* MQFileDownloadCell.m in Sources */,
 				3C790E371F58FA2F00AA0744 /* GTMBase64.m in Sources */,
 				3CC974EE1F56698800351819 /* UIFont+Extend.m in Sources */,
+				3C0D38881F67B19B003B9070 /* GoodDetialHaderCell.m in Sources */,
 				3CC974F51F56698800351819 /* UIView+Extend.m in Sources */,
 				3C1679E11F5D2991004307E4 /* MQMessageFormImageCell.m in Sources */,
 				3CC975001F56698800351819 /* PBScrollView.m in Sources */,
@@ -3138,12 +3240,14 @@
 				3C790E451F58FFA700AA0744 /* UserInfo.m in Sources */,
 				3C1679AA1F5D2991004307E4 /* MQChatAudioRecorder.m in Sources */,
 				3C1679DE1F5D2991004307E4 /* MQMessageFormViewStyleGreen.m in Sources */,
+				3C0D38921F67CE05003B9070 /* EditAddressCell.m in Sources */,
 				3CC974031F5660A800351819 /* MyViewController.m in Sources */,
 				3C1679861F5D2991004307E4 /* MQRichTextMessage.m in Sources */,
 				3C1679811F5D2991004307E4 /* MQBotMessageFactory.m in Sources */,
 				3CC9743F1F56654C00351819 /* IQUIWindow+Hierarchy.m in Sources */,
 				3C82D5D61F5E903F00AD545B /* HomeGoodModel.m in Sources */,
 				3CC973EB1F565C5800351819 /* BaseNavViewController.m in Sources */,
+				3C0D38721F677627003B9070 /* GetCouponViewController.m in Sources */,
 				3C1679AF1F5D2991004307E4 /* MQDateFormatterUtil.m in Sources */,
 				3C1679A81F5D2991004307E4 /* MQBundleUtil.m in Sources */,
 				3C1679B51F5D2991004307E4 /* MEIQIA_CustomIOSAlertView.m in Sources */,
@@ -3158,6 +3262,8 @@
 				3C790E0D1F57F5E600AA0744 /* UIView+WhenTappedBlocks.m in Sources */,
 				3C1679E01F5D2991004307E4 /* MQMessageFormViewService.m in Sources */,
 				3C1679CB1F5D2991004307E4 /* MQEvaluationView.m in Sources */,
+				3C0D387B1F677715003B9070 /* GetCouponOneCell.m in Sources */,
+				3C0D38A11F67D407003B9070 /* GoodPriceCell.m in Sources */,
 				3C790DE11F57DF3900AA0744 /* JSONKit.m in Sources */,
 				3C1679D61F5D2991004307E4 /* MQEmbededWebView.m in Sources */,
 				3C1679D71F5D2991004307E4 /* MQWebViewController.m in Sources */,
@@ -3170,6 +3276,7 @@
 				3C16798E1F5D2991004307E4 /* MQEventCellModel.m in Sources */,
 				3C16799D1F5D2991004307E4 /* MQEvaluationResultCell.m in Sources */,
 				3C8D506E1F5E74F000B78247 /* BannerInfo.m in Sources */,
+				3C0D38841F67B16C003B9070 /* GoodDetailViewController.m in Sources */,
 				3CF14D3D1F5949BE00D997A9 /* ForgetPwdViewController.m in Sources */,
 				3C1679DC1F5D2991004307E4 /* MQMessageFormViewStyleBlue.m in Sources */,
 				3C16797B1F5D2991004307E4 /* MQPreChatFormListViewController.m in Sources */,
@@ -3208,6 +3315,7 @@
 				3C790E011F57E27800AA0744 /* RHRefreshControlViewWithoutIcon.m in Sources */,
 				3C16798F1F5D2991004307E4 /* MQFileDownloadCellModel.m in Sources */,
 				3CF14D3B1F5949BE00D997A9 /* BangdingViewController.m in Sources */,
+				3C0D38801F67772E003B9070 /* GetCouponTwoCell.m in Sources */,
 				3C1679C71F5D2991004307E4 /* wav.mm in Sources */,
 				3C1679651F5D2991004307E4 /* MQShareTransitioningDelegateImpl.m in Sources */,
 				3C790DFC1F57E27800AA0744 /* RHRefreshControl.m in Sources */,
@@ -3234,12 +3342,14 @@
 				3C790E281F58F63100AA0744 /* HttpHelper.m in Sources */,
 				3C6341CD1F5FA6310083B5AD /* ClassifyTableViewController.m in Sources */,
 				3CC975381F56961A00351819 /* ClassifyLayout.m in Sources */,
+				3C0D388D1F67CDC8003B9070 /* EditOrderViewController.m in Sources */,
 				3C1679E31F5D2991004307E4 /* MQMessageFormTextView.m in Sources */,
 				3C1679731F5D2991004307E4 /* MQChatViewStyle.m in Sources */,
 				3C790DE41F57E24900AA0744 /* BaseTableViewController.mm in Sources */,
 				3CC973FA1F565D5600351819 /* SafariViewController.m in Sources */,
 				3CC975411F56A36400351819 /* ClassifyCollectionViewCell.m in Sources */,
 				3C1679D31F5D2991004307E4 /* MQRecordView.m in Sources */,
+				3C0D389C1F67D22B003B9070 /* HaveCouponCell.m in Sources */,
 				3CC973F11F565CE200351819 /* BaseTableView.m in Sources */,
 				3C16797D1F5D2991004307E4 /* MQPreChatSubmitViewController.m in Sources */,
 				3C1679711F5D2991004307E4 /* MQChatViewConfig.m in Sources */,

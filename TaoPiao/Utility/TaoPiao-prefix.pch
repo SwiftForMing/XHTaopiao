@@ -87,6 +87,13 @@
 #import "NSDate-Utilities.h"
 #import "Tool.h"
 #import "Colours.h"
-
+//美洽
+#import "MQChatViewManager.h"
+#import "MQChatDeviceUtil.h"
+#import <MeiQiaSDK/MeiQiaSDK.h>
+#import "NSArray+MQFunctional.h"
+#import "MQBundleUtil.h"
+#import "MQAssetUtil.h"
+#import "MQImageUtil.h"
 
 #endif

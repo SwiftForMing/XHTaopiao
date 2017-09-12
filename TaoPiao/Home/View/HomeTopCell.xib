@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="154"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="414" height="153.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="414" height="154"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aixin" translatesAutoresizingMaskIntoConstraints="NO" id="1P7-RE-VOa">
@@ -67,10 +68,10 @@
                             <constraint firstAttribute="height" constant="30" id="rYS-3o-RCZ"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="劵后￥19776 ￥19776" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pUX-ss-ZrJ">
-                        <rect key="frame" x="10" y="100" width="120" height="30"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="劵后￥19776 " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pUX-ss-ZrJ">
+                        <rect key="frame" x="10" y="100" width="80" height="30"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -85,24 +86,34 @@
                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IYv-nC-aq6">
+                        <rect key="frame" x="90" y="100" width="40" height="30"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="IYv-nC-aq6" firstAttribute="width" secondItem="fUO-eE-BoS" secondAttribute="width" multiplier="1/3" id="0IF-kW-9PD"/>
+                    <constraint firstItem="IYv-nC-aq6" firstAttribute="top" secondItem="fUO-eE-BoS" secondAttribute="top" id="1Et-2F-Gan"/>
+                    <constraint firstItem="pUX-ss-ZrJ" firstAttribute="top" secondItem="fUO-eE-BoS" secondAttribute="top" id="1IQ-oP-by1"/>
                     <constraint firstItem="g1O-CZ-wkU" firstAttribute="leading" secondItem="zvo-2w-5R5" secondAttribute="leading" id="1qY-dv-wPK"/>
                     <constraint firstItem="ETx-7t-8mS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="3Jn-Fi-ajK"/>
                     <constraint firstAttribute="trailing" secondItem="g1O-CZ-wkU" secondAttribute="trailing" constant="10" id="5mC-wS-4I6"/>
                     <constraint firstItem="zvo-2w-5R5" firstAttribute="leading" secondItem="1P7-RE-VOa" secondAttribute="trailing" constant="10" id="9oS-xi-lpW"/>
                     <constraint firstItem="fUO-eE-BoS" firstAttribute="leading" secondItem="1P7-RE-VOa" secondAttribute="leading" id="BA7-Bw-cAb"/>
+                    <constraint firstItem="IYv-nC-aq6" firstAttribute="bottom" secondItem="fUO-eE-BoS" secondAttribute="bottom" id="EE2-5f-Y4T"/>
                     <constraint firstItem="sti-Ot-QT1" firstAttribute="top" secondItem="g1O-CZ-wkU" secondAttribute="bottom" constant="5" id="Jyw-e1-d8r"/>
-                    <constraint firstItem="xM2-k4-M2Y" firstAttribute="leading" secondItem="pUX-ss-ZrJ" secondAttribute="trailing" constant="30" id="MdR-Bf-Z3K"/>
-                    <constraint firstItem="pUX-ss-ZrJ" firstAttribute="top" secondItem="fUO-eE-BoS" secondAttribute="top" id="N5f-yc-KrD"/>
+                    <constraint firstItem="xM2-k4-M2Y" firstAttribute="leading" secondItem="fUO-eE-BoS" secondAttribute="trailing" constant="30" id="Lab-Id-7uk"/>
+                    <constraint firstItem="IYv-nC-aq6" firstAttribute="trailing" secondItem="fUO-eE-BoS" secondAttribute="trailing" id="MEm-kv-cHU"/>
                     <constraint firstItem="zvo-2w-5R5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="Nnt-Fa-XKv"/>
-                    <constraint firstItem="pUX-ss-ZrJ" firstAttribute="leading" secondItem="fUO-eE-BoS" secondAttribute="leading" id="V0m-gM-cUg"/>
+                    <constraint firstItem="pUX-ss-ZrJ" firstAttribute="width" secondItem="fUO-eE-BoS" secondAttribute="width" multiplier="2/3" id="Ou2-g5-shc"/>
+                    <constraint firstItem="pUX-ss-ZrJ" firstAttribute="leading" secondItem="fUO-eE-BoS" secondAttribute="leading" id="RfY-HF-Qac"/>
                     <constraint firstItem="g1O-CZ-wkU" firstAttribute="top" secondItem="zvo-2w-5R5" secondAttribute="bottom" constant="10" id="WL1-CI-gcX"/>
-                    <constraint firstItem="pUX-ss-ZrJ" firstAttribute="trailing" secondItem="fUO-eE-BoS" secondAttribute="trailing" id="ayS-fW-lzq"/>
                     <constraint firstItem="ETx-7t-8mS" firstAttribute="leading" secondItem="zvo-2w-5R5" secondAttribute="trailing" constant="5" id="cXU-LS-T2z"/>
                     <constraint firstItem="fUO-eE-BoS" firstAttribute="bottom" secondItem="1P7-RE-VOa" secondAttribute="bottom" id="dNo-sb-P4v"/>
+                    <constraint firstItem="pUX-ss-ZrJ" firstAttribute="bottom" secondItem="fUO-eE-BoS" secondAttribute="bottom" id="dO9-ch-alU"/>
                     <constraint firstItem="1P7-RE-VOa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="dxh-4h-5gI"/>
-                    <constraint firstItem="pUX-ss-ZrJ" firstAttribute="bottom" secondItem="fUO-eE-BoS" secondAttribute="bottom" id="e2r-gw-XXE"/>
                     <constraint firstAttribute="trailing" secondItem="ETx-7t-8mS" secondAttribute="trailing" constant="10" id="ejc-oz-dhM"/>
                     <constraint firstItem="xM2-k4-M2Y" firstAttribute="top" secondItem="sti-Ot-QT1" secondAttribute="bottom" constant="5" id="gDL-gA-sXJ"/>
                     <constraint firstItem="sti-Ot-QT1" firstAttribute="leading" secondItem="zvo-2w-5R5" secondAttribute="leading" id="gfj-RU-FwD"/>
@@ -113,6 +124,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="afterPriceLabel" destination="IYv-nC-aq6" id="7dp-ZP-JKW"/>
                 <outlet property="couponName" destination="zvo-2w-5R5" id="RJH-kd-IHg"/>
                 <outlet property="couponPriceLabel" destination="sti-Ot-QT1" id="Flt-mQ-aEK"/>
                 <outlet property="goodNameLabel" destination="g1O-CZ-wkU" id="jpW-mL-rEm"/>
