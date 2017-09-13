@@ -144,7 +144,7 @@
 #if TARGET_IPHONE_SIMULATOR
     [parameters setObject:@"iOS test" forKey:@"jpush_id"];
 #endif
-    
+    MLog(@"log%@",parameters);
     //拼接:URL_Server+keyURL
     NSString *URLString = [self getURLbyKey:URL_Login];
     
@@ -411,6 +411,7 @@
 +(void)getCouponListDataWithUserID:(NSString *)user_id
                            PageNum:(NSString *)page
                           limitNum:(NSString *)limit
+                              type:(NSString *)type
                            success:(void (^)(NSDictionary *resultDic))success
                               fail:(void (^)(NSString *description))fail
 {
@@ -431,6 +432,11 @@
         [parameters setObject:limit forKey:@"limitNum"];
     }else{
         MLog(@"缺少参赛page");;
+    }
+    if (type) {
+        [parameters setObject:type forKey:@"type"];
+    }else{
+        MLog(@"缺少参赛type");
     }
     //拼接:URL_Server+keyURL
     NSString *URLString = [self getURLbyKey:URL_MyCouponsList];

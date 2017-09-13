@@ -33,7 +33,7 @@
     
     MyHeaderView *headerView = [[[NSBundle mainBundle] loadNibNamed:@"MyHeaderView" owner:nil options:nil] firstObject];
     headerView.width = ScreenWidth;
-    headerView.height = 201 * UIAdapteRate;
+    headerView.height = 150 * UIAdapteRate;
     
     [headerView.headImage whenTapped:^{
         [self loginClick];
@@ -85,13 +85,13 @@
                 cell.desLabel.text = @"我的订单";
                 break;
             case 1:
-                cell.desLabel.text = @"我的心愿单";
+                cell.desLabel.text = @"我的心愿";
                 break;
             case 2:
                 cell.desLabel.text = @"券豆商城";
                 break;
             case 3:
-                cell.desLabel.text = @"地址管理";
+                cell.desLabel.text = @"娱乐城";
             break;
             default:
                 break;
@@ -99,10 +99,10 @@
     }else{
         switch (indexPath.row) {
             case 0:
-                cell.desLabel.text = @"娱乐城";
+                cell.desLabel.text = @"联系客服";
                 break;
             case 1:
-                cell.desLabel.text = @"联系客服";
+               cell.desLabel.text = @"关于我们";
             break;
                 
            
@@ -136,10 +136,10 @@
         }
     }else{
         switch (indexPath.row) {
-            case 0:
+            case 1:
                
                 break;
-            case 1:{
+            case 0:{
                 MLog(@"?????");
                 NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
                 NSString *versionString = [NSString stringWithFormat:@"iOS %@", version];

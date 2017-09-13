@@ -115,6 +115,7 @@ success:(void (^)(NSDictionary *resultDic))success
 +(void)getCouponListDataWithUserID:(NSString *)user_id
                            PageNum:(NSString *)page
                           limitNum:(NSString *)limit
+                              type:(NSString *)type
                            success:(void (^)(NSDictionary *resultDic))success
                               fail:(void (^)(NSString *description))fail;
 +(void)getAddCouponDataWithUserID:(NSString *)user_id

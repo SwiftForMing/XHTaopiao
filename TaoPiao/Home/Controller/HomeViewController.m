@@ -14,6 +14,7 @@
 #import "HomeGoodModel.h"
 #import "GetCouponViewController.h"
 #import "GoodDetailViewController.h"
+#import "TadayDiscountViewController.h"
 @interface HomeViewController (){
     
     NSMutableArray *bannerArray;
@@ -206,6 +207,11 @@
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
             }
             
+            [cell.leftImageView whenTapped:^{
+                [self goTodayDiscount];
+                
+            }];
+            
             return cell;
         }
             break;
@@ -278,7 +284,12 @@
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
-
+#pragma mark - 跳转到今日特惠页面
+-(void)goTodayDiscount{
+    
+    TadayDiscountViewController *vc = [[TadayDiscountViewController alloc]initWithTableViewStyle:1];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 #pragma mark - 领取操作
 -(void)lqBtnClick:(UIButton *)btn{
     GetCouponViewController *vc = [[GetCouponViewController alloc]initWithTableViewStyle:0];

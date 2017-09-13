@@ -15,10 +15,16 @@
     // Initialization code
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+-(void)setGoodModel:(HomeGoodModel *)goodModel{
+    
+    _leftLabel.text = @"请选择付款方式";
+    _leftLabel.font = [UIFont systemFontOfSize:14];
+    _arrowImageView.hidden = YES;
+    NSString * price = [NSString stringWithFormat:@"共计 %@元",goodModel.good_price];
+    NSMutableAttributedString *aPrice = [[NSMutableAttributedString alloc]initWithString:price];
+    [aPrice addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:[price rangeOfString:[NSString stringWithFormat:@" %@元",goodModel.good_price]]];
+    _couponNameLabel.attributedText = aPrice;
+    
 }
 
 @end

@@ -10,7 +10,8 @@
 
 @interface MyHeaderView : UIView
 @property (weak, nonatomic) IBOutlet UIImageView *headImage;
-@property (weak, nonatomic) IBOutlet UIImageView *setImage;
+@property (weak, nonatomic) IBOutlet UIView *bgView;
+
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
 @end

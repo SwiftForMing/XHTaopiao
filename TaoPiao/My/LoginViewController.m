@@ -68,8 +68,6 @@
 
 - (void)initVariable
 {
-    //    self.title = @"登录";
-    
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
                                 [UIColor whiteColor],
                                 NSForegroundColorAttributeName, nil];
@@ -78,31 +76,31 @@
     
     _loginButton.layer.masksToBounds =YES;
     _loginButton.layer.cornerRadius = 5;
+     _thirdLoginView.hidden = NO;
     
-    
-    if ([[ShareManager shareInstance].isShowThird isEqualToString:@"y"]) {
-        /*
-        if (([WXApi isWXAppInstalled] && [WXApi isWXAppSupportApi]) || ([QQApiInterface isQQInstalled] &&[QQApiInterface isQQSupportApi]))
-        {
-            _thirdLoginView.hidden = NO;
-            
-            if (![WXApi isWXAppInstalled] || ![WXApi isWXAppSupportApi])
-            {
-                _weixinLoginButton.hidden = YES;
-            }
-            if (![QQApiInterface isQQInstalled] || ![QQApiInterface isQQSupportApi])
-            {
-                _qqLoginButton.hidden = YES;
-            }
-        }else{
-            _thirdLoginView.hidden = YES;
-        }
-         */
-        
-    }else{
-        _thirdLoginView.hidden = YES;
-    }
-    
+//    if ([[ShareManager shareInstance].isShowThird isEqualToString:@"y"]) {
+//    
+//        if (([WXApi isWXAppInstalled] && [WXApi isWXAppSupportApi]) || ([QQApiInterface isQQInstalled] &&[QQApiInterface isQQSupportApi]))
+//        {
+//            _thirdLoginView.hidden = NO;
+//            
+//            if (![WXApi isWXAppInstalled] || ![WXApi isWXAppSupportApi])
+//            {
+//                _weixinLoginButton.hidden = YES;
+//            }
+//            if (![QQApiInterface isQQInstalled] || ![QQApiInterface isQQSupportApi])
+//            {
+//                _qqLoginButton.hidden = YES;
+//            }
+//        }else{
+//            _thirdLoginView.hidden = YES;
+//        }
+//         
+//        
+//    }else{
+//        _thirdLoginView.hidden = YES;
+//    }
+
     
 }
 
@@ -163,7 +161,7 @@
 - (IBAction)clickQQLoginButtonAction:(id)sender
 {
     
-  /*
+  
     [ShareSDK authorize:SSDKPlatformTypeQQ
                settings:nil
          onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error)
@@ -191,12 +189,11 @@
          }
      }];
     
-   */
-}
+   }
 
 - (IBAction)clickWeiXinLoginButtonAction:(id)sender
 {
-   /*
+   
     [ShareSDK authorize:SSDKPlatformTypeWechat
                settings:nil
          onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error)
@@ -224,7 +221,7 @@
          }
      }];
     
-    */
+   
   
 }
 
@@ -275,11 +272,13 @@
 }
 
 - (void)handleloadResult:(NSDictionary *)resultDic
+
 {
+    MLog(@"resultDic%@",resultDic);
     //登录成功通知
     [[NSNotificationCenter defaultCenter] postNotificationName:kLoginSuccess object:nil];
     
-    //    [Tool showPromptContent:@"登录成功" onView:self.view];
+        [Tool showPromptContent:@"登录成功" onView:self.view];
     [self performSelector:@selector(clickLeftItemAction:) withObject:nil afterDelay:1.5];
     
 }

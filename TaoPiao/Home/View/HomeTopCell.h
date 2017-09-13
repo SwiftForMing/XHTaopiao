@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "HomeGoodModel.h"
+#import "CouponModel.h"
 @interface HomeTopCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *goodPriceLabel;
 @property (weak, nonatomic) IBOutlet UIButton *likeBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *priceImageView;
 @property (weak, nonatomic) IBOutlet UILabel *afterPriceLabel;
 @property(nonatomic,strong)HomeGoodModel *goodModel;
+@property(nonatomic,strong)CouponModel *couponModel;
 @property (weak, nonatomic) IBOutlet UILabel *couponName;
 @property (weak, nonatomic) IBOutlet UILabel *goodNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *couponPriceLabel;

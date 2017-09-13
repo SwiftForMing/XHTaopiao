@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "HomeGoodModel.h"
 @interface HaveCouponCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *couponNameLabel;
-
+@property (weak, nonatomic) IBOutlet UILabel *leftLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *arrowImageView;
+@property(nonatomic,strong)HomeGoodModel *goodModel;
 @end

@@ -12,6 +12,7 @@
 #import "HaveCouponCell.h"
 #import "GoodPriceCell.h"
 #import "AddAddressViewController.h"
+#import "ChooseViewController.h"
 @interface EditOrderViewController (){
     int payNum;
     
@@ -48,8 +49,11 @@
 }
 #pragma mark -跳转到付款页面
 -(void)goPay{
-    MLog(@"放开我 我要去付钱");
-    MLog(@"payNum:%d",payNum);
+
+    ChooseViewController *vc = [[ChooseViewController alloc]initWithTableViewStyle:1];
+    _goodModel.good_price = [NSString stringWithFormat:@"%.2f",[_goodModel.good_price floatValue]*payNum];
+    vc.goodModel = _goodModel;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark tableViewDelegate

@@ -8,7 +8,7 @@
 
 #import "CouponViewController.h"
 #import "HomeTopCell.h"
-#import "HomeGoodModel.h"
+#import "CouponModel.h"
 
 @interface CouponViewController ()<UITextViewDelegate>{
     NSMutableArray *dataArray;
@@ -31,7 +31,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
      self.navigationController.navigationBarHidden = YES;
-    page = 0;
+    dataArray = [NSMutableArray array];
+    page = 1;
     searchKey = @"";
     self.view.backgroundColor = [UIColor blueColor];
     [self setHeaderView];
@@ -98,7 +99,7 @@
 -(void)getListData{
     __weak CouponViewController *weakSelf = self;
     
-    [HttpHelper getCouponListDataWithUserID:@"" PageNum:[NSString stringWithFormat:@"%d",page] limitNum:@"20" success:^(NSDictionary *resultDic) {
+    [HttpHelper getCouponListDataWithUserID:@"20017" PageNum:[NSString stringWithFormat:@"%d",page] limitNum:@"20" type:@"a"success:^(NSDictionary *resultDic) {
         [weakSelf hideRefresh];
         if ([[resultDic objectForKey:@"status"] integerValue] == 0) {
             
@@ -122,7 +123,7 @@
         for (NSDictionary *dic in goodArray)
         {
             MLog(@"goodArray:%@",dic);
-            HomeGoodModel *info = [dic objectByClass:[HomeGoodModel class]];
+            CouponModel *info = [dic objectByClass:[CouponModel class]];
             [dataArray addObject:info];
         }
     }
@@ -163,8 +164,8 @@
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"HomeTopCell" owner:nil options:nil];
                 cell = [nib objectAtIndex:0];
                 //设点点击选择的颜色(无)
-                HomeGoodModel *model = [dataArray objectAtIndex:indexPath.row];
-                cell.goodModel = model;
+                CouponModel *model = [dataArray objectAtIndex:indexPath.row];
+                cell.couponModel = model;
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
             }
             

@@ -14,10 +14,21 @@
     [super awakeFromNib];
    [_likeBtn verticalImageAndTitle:2];
 }
+-(void)setCouponModel:(CouponModel *)couponModel{
+
+    NSURL *url = [[NSURL alloc]initWithString:couponModel.coupons_imge];
+    [_headerImageView sd_setImageWithURL:url placeholderImage:nil];
+    _priceImageView.hidden = YES;
+    _couponName.text = couponModel.coupons_name;
+    _goodNameLabel.text = couponModel.status;
+    _couponPriceLabel.text = couponModel.valid_date;
+    
+}
+
 -(void)setGoodModel:(HomeGoodModel *)goodModel{
     NSURL *url = [[NSURL alloc]initWithString:goodModel.good_header];
     [_headerImageView sd_setImageWithURL:url placeholderImage:nil];
-    
+      _couponName.text = goodModel.coupons_name;
     _goodNameLabel.text = goodModel.good_name;
     
     NSString *price =  [NSString stringWithFormat:@"劵后价￥%@",goodModel.after_coupons_price];
@@ -54,8 +65,6 @@
     _couponPriceLabel.attributedText = couponABS;
     
     _goodModel = goodModel;
-    
-   
     
 }
 

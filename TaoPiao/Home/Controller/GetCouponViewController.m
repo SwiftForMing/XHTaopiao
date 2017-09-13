@@ -11,6 +11,7 @@
 #import "GetCouponOneCell.h"
 #import "GetCouponTwoCell.h"
 #import "EditOrderViewController.h"
+#import "ChooseViewController.h"
 @interface GetCouponViewController ()
 {
     int payNum;
@@ -35,7 +36,7 @@
 -(void)setFootViewForPay{
     UIView *buyFooterView = [[UIView alloc]initWithFrame:(CGRectMake(0, ScreenHeight-64-60, ScreenWidth, 60))];
     _moneyLabel = [[UILabel alloc]initWithFrame:(CGRectMake(10, 5, ScreenWidth -130, 50))];
-    _moneyLabel.text = [NSString stringWithFormat:@"应付：¥0.00"];
+    _moneyLabel.text = [NSString stringWithFormat:@"应付：¥%@",[NSString stringWithFormat:@"%.2f",[_goodModel.coupons_value floatValue]*payNum]];
     [buyFooterView addSubview:_moneyLabel];
     buyFooterView.backgroundColor = [UIColor whiteColor];
     
@@ -51,7 +52,11 @@
 -(void)goPay{
     MLog(@"放开我 我要去付钱");
     MLog(@"payNum:%d",payNum);
-       
+    ChooseViewController *vc = [[ChooseViewController alloc]initWithTableViewStyle:1];
+    _goodModel.good_price = [NSString stringWithFormat:@"%.2f",[_goodModel.coupons_value floatValue]*payNum];
+    vc.goodModel = _goodModel;
+    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 #pragma mark - tableViewDelegate

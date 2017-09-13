@@ -20,7 +20,7 @@
     [_goodImageView sd_setImageWithURL:url placeholderImage:nil];
     _goodNameLabel.text = goodModel.good_name;
 //    _goodColorLabel.text = goodModel.
-    _goodPriceLabel.text = [NSString stringWithFormat:@"¥%@",goodModel.good_price];;
+    _goodPriceLabel.text = [NSString stringWithFormat:@"¥%@",goodModel.good_price];
 
 }
 @end

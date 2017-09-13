@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="154"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="414" height="154"/>
+                <rect key="frame" x="0.0" y="0.0" width="414" height="153.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aixin" translatesAutoresizingMaskIntoConstraints="NO" id="1P7-RE-VOa">
@@ -132,6 +132,7 @@
                 <outlet property="headerImageView" destination="1P7-RE-VOa" id="Wsu-4e-xW1"/>
                 <outlet property="likeBtn" destination="ETx-7t-8mS" id="xy7-IM-BG9"/>
                 <outlet property="lqBtn" destination="xM2-k4-M2Y" id="rgq-53-jpJ"/>
+                <outlet property="priceImageView" destination="fUO-eE-BoS" id="zBc-XZ-sBP"/>
             </connections>
             <point key="canvasLocation" x="-507" y="-258"/>
         </tableViewCell>
