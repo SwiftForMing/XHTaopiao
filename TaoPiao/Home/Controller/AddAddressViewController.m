@@ -8,6 +8,8 @@
 
 #import "AddAddressViewController.h"
 #import "EditAddressCell.h"
+#import "AddReciverViewController.h"
+#import "ReciverAddressViewController.h"
 @interface AddAddressViewController ()
 
 @end
@@ -26,7 +28,8 @@
 - (void)rightBarButtonItemAction:(id)sender
 {
     MLog(@"放开我死胖子，我要去添加地址");
-    
+    ReciverAddressViewController *vc = [[ReciverAddressViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
 

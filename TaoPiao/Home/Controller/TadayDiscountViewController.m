@@ -50,7 +50,7 @@
         }
         for (NSDictionary *dic in goodArray)
         {
-            MLog(@"goodArray:%@",dic);
+        
             HomeGoodModel *info = [dic objectByClass:[HomeGoodModel class]];
             [discountArray addObject:info];
         }

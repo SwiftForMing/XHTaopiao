@@ -483,6 +483,418 @@
 }
 
 
+
+/**
+ * 获取充值记录
+ */
++ (void)getCZRecordWithUserId:(NSString *)user_id
+                      pageNum:(NSString *)pageNum
+                     limitNum:(NSString *)limitNum
+                         type:(NSString *)type
+                      success:(void (^)(NSDictionary *resultDic))success
+                         fail:(void (^)(NSString *description))fail
+{
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    
+    if (user_id) {
+        [parameters setObject:user_id forKey:@"user_id"];
+    }
+    if (pageNum) {
+        [parameters setObject:pageNum forKey:@"pageNum"];
+    }
+    if (limitNum) {
+        [parameters setObject:limitNum forKey:@"limitNum"];
+    }
+    if (type) {
+        [parameters setObject:type forKey:@"type"];
+    }
+    //拼接:URL_Server+keyURL
+    NSString *URLString = [self getURLbyKey:URL_GetCZReord];
+    
+    [self postHttpWithDic:parameters urlStr:URLString success:success fail:fail];
+}
+
+/**
+ * 充值
+ * type:[weixin/zhifubao]
+ */
++ (void)payCZWithUserId:(NSString *)user_id
+                  money:(NSString *)money
+                typeStr:(NSString *)typeStr
+                success:(void (^)(NSDictionary *resultDic))success
+                   fail:(void (^)(NSString *description))fail
+{
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    
+    if (user_id) {
+        [parameters setObject:user_id forKey:@"user_id"];
+    }
+    if (money) {
+        [parameters setObject:money forKey:@"money"];
+    }
+    if (typeStr) {
+        [parameters setObject:typeStr forKey:@"type"];
+    }
+    //拼接:URL_Server+keyURL
+    NSString *URLString = [self getURLbyKey:URL_PayCZ];
+    
+    [self postHttpWithDic:parameters urlStr:URLString success:success fail:fail];
+}
+
+
+/**
+ * 获取中信支付参数
+ *
+ */
++ (void)getSpayInfoWithOrderNo:(NSString *)out_trade_no
+                     total_fee:(NSString *)total_fee
+              spbill_create_ip:(NSString *)spbill_create_ip
+                          body:(NSString *)body
+                        detail:(NSString *)detail
+                       success:(void (^)(NSDictionary *resultDic))success
+                          fail:(void (^)(NSString *description))fail
+{
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    
+    if (out_trade_no) {
+        [parameters setObject:out_trade_no forKey:@"out_trade_no"];
+    }
+    
+    if (total_fee) {
+        [parameters setObject:total_fee forKey:@"total_fee"];
+    }
+    
+    if (spbill_create_ip) {
+        [parameters setObject:spbill_create_ip forKey:@"spbill_create_ip"];
+    }else{
+        [parameters setObject:@"" forKey:@"spbill_create_ip"];
+    }
+    
+    if (body) {
+        [parameters setObject:body forKey:@"body"];
+    }else{
+        [parameters setObject:@"" forKey:@"body"];
+    }
+    
+    if (detail) {
+        [parameters setObject:detail forKey:@"detail"];
+    }else{
+        [parameters setObject:@"" forKey:@"detail"];
+    }
+    
+    NSString *user_id = [ShareManager shareInstance].userinfo.id;
+    if (user_id) {
+        [parameters setObject:user_id forKey:@"user_id"];
+    }
+    
+    //拼接:URL_Server+keyURL
+    NSString *URLString = [self getURLbyKey:@"appInterface/zxpayUnifiedorder.jhtml"];
+    
+    [self postHttpWithDic:parameters urlStr:URLString success:success fail:fail];
+}
+
+// 生成预订单
++ (void)getOrderWithGoods:(NSString *)goods_fight_ids
+                orderType:(NSString *)order_type            // 订单/充值/欢乐豆
+                    count:(int)goodsCount
+           thricePurchase:(NSArray *)thricePurchaseArray
+                   coupon:(NSString *)ticket_send_id
+         costedThriceCoin:(int)costedThriceCoin
+               totalPrice:(int)totalPrice
+                 cutPrice:(int)cutPrice
+          payCrowdfunding:(int)payCrowdfunding
+                  success:(void (^)(NSDictionary *data))success
+                  failure:(void (^)(NSString *description))failure
+{
+    //没有配置啥子三倍的东东
+    NSString *fights_choices = @"";
+    NSString *fights_counts = @"";
+    NSString *goods_buy_nums = [NSString stringWithFormat:@"%d", goodsCount];
+    NSString *happy_bean_num = [NSString stringWithFormat:@"%d", costedThriceCoin];
+    NSString *total_fee = [NSString stringWithFormat:@"%d", cutPrice];
+    NSString *all_price = [NSString stringWithFormat:@"%d", totalPrice];
+    NSString *pay_dbb_num = [NSString stringWithFormat:@"%d", payCrowdfunding];
+    
+    
+    order_type = order_type?:@"订单";
+    goods_fight_ids = goods_fight_ids?:@"";
+    ticket_send_id = ticket_send_id?:@"";
+    fights_choices = fights_choices?:@"";
+    fights_counts = fights_counts?:@"";
+    goods_buy_nums = goods_buy_nums?:@"";
+    happy_bean_num = happy_bean_num?:@"";
+    total_fee = total_fee?:@"";
+    all_price = all_price?:@"";
+    pay_dbb_num = pay_dbb_num?:@"";
+    
+    
+    if ([goods_fight_ids isKindOfClass:[NSNumber class]]) {
+        goods_fight_ids = [NSString stringWithFormat:@"%lld", [goods_fight_ids longLongValue]];
+    }
+    
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:order_type forKey:@"order_type"];
+    [parameters setObject:goods_fight_ids forKey:@"goods_fight_ids"];
+    [parameters setObject:ticket_send_id forKey:@"ticket_send_id"];
+    [parameters setObject:fights_choices forKey:@"fights_choices"];
+    [parameters setObject:fights_counts forKey:@"fights_counts"];
+    [parameters setObject:goods_buy_nums forKey:@"goods_buy_nums"];
+    [parameters setObject:happy_bean_num forKey:@"happy_bean_num"];
+    [parameters setObject:total_fee forKey:@"total_fee"];
+    [parameters setObject:all_price forKey:@"all_price"];
+    [parameters setObject:pay_dbb_num forKey:@"pay_dbb_num"];
+    
+    NSString *user_id = [ShareManager shareInstance].userinfo.id;
+    if (user_id) {
+        [parameters setObject:user_id forKey:@"user_id"];
+    }
+    
+    NSString *path = [self apiWithPathExtension:@"genOrder.jhtml"];
+    
+    [self postHttpWithDic:parameters urlStr:path success:success fail:failure];
+}
+
+
+/**
+ * 修改默认地址
+ */
++ (void)changeDefaultAddressWithUserId:(NSString *)user_id
+                             addressId:(NSString *)addressId
+                               success:(void (^)(NSDictionary *resultDic))success
+                                  fail:(void (^)(NSString *description))fail
+{
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    
+    if (user_id) {
+        [parameters setObject:user_id forKey:@"user_id"];
+    }
+    if (addressId) {
+        [parameters setObject:addressId forKey:@"id"];
+    }
+    //拼接:URL_Server+keyURL
+    NSString *URLString = [self getURLbyKey:URL_ChangeDefaultAddress];
+    
+    [self postHttpWithDic:parameters urlStr:URLString success:success fail:fail];
+}
+
+/**
+ * 收获地址列表
+ */
++ (void)receiveAddressListWithUserId:(NSString *)user_id
+                             success:(void (^)(NSDictionary *resultDic))success
+                                fail:(void (^)(NSString *description))fail
+{
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    
+    if (user_id) {
+        [parameters setObject:user_id forKey:@"user_id"];
+    }
+    //拼接:URL_Server+keyURL
+    NSString *URLString = [self getURLbyKey:URL_GetAdressList];
+    
+    [self postHttpWithDic:parameters urlStr:URLString success:success fail:fail];
+}
+
+
+/**
+ *添加或修改我的收获地址
+ *
+ */
++ (void)addAddressWithUserId:(NSString *)user_id
+                   addressId:(NSString *)addressId
+                    user_tel:(NSString *)user_tel
+                   user_name:(NSString *)user_name
+                 province_id:(NSString *)province_id
+                     city_id:(NSString *)city_id
+              detail_address:(NSString *)detail_address
+                  is_default:(NSString *)is_default
+                     success:(void (^)(NSDictionary *resultDic))success
+                        fail:(void (^)(NSString *description))fail
+{
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    
+    if (user_id) {
+        [parameters setObject:user_id forKey:@"user_id"];
+    }
+    if (addressId) {
+        [parameters setObject:addressId forKey:@"id"];
+    }else{
+        [parameters setObject:@"" forKey:@"id"];
+    }
+    
+    if (user_tel) {
+        [parameters setObject:user_tel forKey:@"user_tel"];
+    }
+    if (user_name) {
+        [parameters setObject:user_name forKey:@"user_name"];
+    }
+    if (province_id) {
+        [parameters setObject:province_id forKey:@"province_id"];
+    }
+    if (city_id) {
+        [parameters setObject:city_id forKey:@"city_id"];
+    }
+    if (detail_address) {
+        [parameters setObject:detail_address forKey:@"detail_address"];
+    }
+    if (is_default) {
+        [parameters setObject:is_default forKey:@"is_default"];
+    }
+    //拼接:URL_Server+keyURL
+    NSString *URLString = [self getURLbyKey:URL_AddAddress];
+    
+    [self postHttpWithDic:parameters urlStr:URLString success:success fail:fail];
+}
+
+
+/**
+ * 获取城市列表
+ */
++ (void)getCityInfoWithProvinceId:(NSString *)provinceId
+                          success:(void (^)(NSDictionary *resultDic))success
+                             fail:(void (^)(NSString *description))fail
+{
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    
+    if (provinceId) {
+        [parameters setObject:provinceId forKey:@"provinceId"];
+    }
+    //拼接:URL_Server+keyURL
+    NSString *URLString = [self getURLbyKey:URL_GetCityInfo];
+    
+    [self postHttpWithDic:parameters urlStr:URLString success:success fail:fail];
+}
+
+/**
+ * 删除地址
+ */
++ (void)deleteAddressWithAddressId:(NSString *)addressId
+                           success:(void (^)(NSDictionary *resultDic))success
+                              fail:(void (^)(NSString *description))fail
+{
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    
+    if (addressId) {
+        [parameters setObject:addressId forKey:@"id"];
+    }
+    //拼接:URL_Server+keyURL
+    NSString *URLString = [self getURLbyKey:URL_DeleteMyAddress];
+    
+    [self postHttpWithDic:parameters urlStr:URLString success:success fail:fail];
+}
+
+
+/**
+ * 拼接:URL_Server+keyURL
+ */
++ (NSString *)apiWithPathExtension:(NSString *)pathExtension{
+    
+    NSString *str = [NSMutableString stringWithFormat:@"%@appInterface/%@", URL_Server, pathExtension];
+    
+    if ([ShareManager shareInstance].isInReview == YES) {
+        str = [NSMutableString stringWithFormat:@"%@appInterface/%@", URL_ServerTest, pathExtension];
+    }
+    
+    return str;
+}
+
+
+// 直接购买 = 生成与订单 -> 夺宝币欢乐豆均足够可直接购买
++ (void)purchaseGoodsFightID:(NSString *)goods_fight_ids
+                       count:(int)goodsCount
+              thricePurchase:(NSArray *)thricePurchaseArray
+                  isShopCart:(NSString *)is_shop_cart
+                      coupon:(NSString *)ticket_send_id
+         exchangedThriceCoin:(int)exchangedThriceCoin
+                     goodsID:(NSString *)goods_ids
+                     buyType:(NSString *)buyType
+                     success:(void (^)(NSDictionary *data))success
+                     failure:(void (^)(NSString *description))failure
+{
+    NSString *payType = @"money";
+    NSString *fights_choices = @"[ServerProtocol fights_choices:thricePurchaseArray]";
+    NSString *fights_counts = @"[ServerProtocol fights_counts:thricePurchaseArray]";
+    NSString *goods_buy_nums = [NSString stringWithFormat:@"%d", goodsCount];
+    NSString *happy_bean_price = [NSString stringWithFormat:@"%d", exchangedThriceCoin];
+    
+    
+    is_shop_cart = is_shop_cart?:@"n";
+    goods_fight_ids = goods_fight_ids?:@"";
+    ticket_send_id = ticket_send_id?:@"";
+    fights_choices = fights_choices?:@"";
+    fights_counts = fights_counts?:@"";
+    goods_buy_nums = goods_buy_nums?:@"";
+    happy_bean_price = happy_bean_price?:@"";
+    goods_ids = goods_ids?:@"";
+    buyType = buyType?:@"";
+    
+    
+    if ([goods_fight_ids isKindOfClass:[NSNumber class]]) {
+        goods_fight_ids = [NSString stringWithFormat:@"%lld", [goods_fight_ids longLongValue]];
+    }
+    if ([goods_ids isKindOfClass:[NSNumber class]]) {
+        goods_ids = [NSString stringWithFormat:@"%lld", [goods_ids longLongValue]];
+    }
+    
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:payType forKey:@"payType"];
+    [parameters setObject:goods_fight_ids forKey:@"goods_fight_ids"];
+    [parameters setObject:is_shop_cart forKey:@"is_shop_cart"];
+    [parameters setObject:ticket_send_id forKey:@"ticket_send_id"];
+    [parameters setObject:fights_choices forKey:@"fights_choices"];
+    [parameters setObject:fights_counts forKey:@"fights_counts"];
+    [parameters setObject:goods_buy_nums forKey:@"goods_buy_nums"];
+    [parameters setObject:happy_bean_price forKey:@"happy_bean_price"];
+    [parameters setObject:goods_ids forKey:@"goods_ids"];
+    [parameters setObject:buyType forKey:@"buyType"];
+    
+    NSString *user_id = [ShareManager shareInstance].userinfo.id;
+    if (user_id) {
+        [parameters setObject:user_id forKey:@"user_id"];
+    }
+    
+    NSString *path = [self apiWithPathExtension:@"paymentGoodsFight.jhtml"];
+    
+    [self postWithDictionary:parameters path:path success:success fail:failure];
+}
+#pragma mark - 底层 post数据请求和图片上传
+
++ (void)postWithDictionary:(NSMutableDictionary *)parameter
+                      path:(NSString *)path
+                   success:(void (^)(NSDictionary *resultDictionary))success //成功
+                      fail:(void (^)(NSString *description))fail      //失败
+{
+    [self postHttpWithDic:parameter
+                   urlStr:path success:^(NSDictionary *responseObject) {
+                       
+                       BOOL result = NO;
+                       NSString *description = @"";
+                       NSDictionary *data = nil;
+                       
+                       if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                           NSDictionary *responseDict = (NSDictionary *)responseObject;
+                           
+                           int status = [[responseDict objectForKey:@"status"] intValue];
+                           description = [responseDict objectForKey:@"desc"];
+                           data = [responseDict objectForKey:@"data"];
+                           
+                           if (status == 0) {
+                               result = YES;
+                           }
+                       }
+                       
+                       if (result) {
+                           success(data);
+                       } else {
+                           fail(description);
+                       }
+                       
+                   } fail:fail];
+}
+
+
 /**
  * Post请求数据
  */

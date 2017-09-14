@@ -20,6 +20,7 @@ typedef void (^selectImage_block_t)(UIImage* image,NSString* imageName);
 @property (nonatomic, strong) UserInfo *userinfo;
 @property (nonatomic, strong) LoginModel *loginModel;
 @property (nonatomic) BOOL isInReview;  // 是否正在审核中
+@property (nonatomic, copy) NSArray *configureArray;    //支付方式配置信息
 @property (nonatomic, copy) NSString *token;
 @property (nonatomic) NSInteger serverTimeDifference;       // 与服务器时间差
 @property (nonatomic, strong) NSString *isShowThird;

@@ -104,8 +104,6 @@
             case 1:
                cell.desLabel.text = @"关于我们";
             break;
-                
-           
         }
     }
 

@@ -12,6 +12,7 @@ target 'TaoPiao' do
   pod 'LKDBHelper', '~>2.1.8'
   pod 'TKAlert&TKActionSheet', '~> 1.0.23'
   pod 'JPush', '~> 2.1.6'
+  pod 'ReactiveCocoa','2.1.8'
   #pod 'WechatOpenSDK', '~> 1.8.0'
   # Pods for TaoPiao
 

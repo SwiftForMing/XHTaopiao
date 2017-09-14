@@ -15,10 +15,11 @@
     // Initialization code
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+-(void)setAddressModel:(RecoverAddressListInfo *)addressModel{
+    
+    _nameLabel.text = addressModel.user_name;
+    _telLabel.text = addressModel.user_tel;
+    _addressLabel.text = [NSString stringWithFormat:@"%@%@",addressModel.address,addressModel.detail_address];
 }
 
 @end

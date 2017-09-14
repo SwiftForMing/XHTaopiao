@@ -13,10 +13,16 @@
 #import "GoodPriceCell.h"
 #import "AddAddressViewController.h"
 #import "ChooseViewController.h"
+#import "ReciverAddressViewController.h"
+#import "ProvinceInfo.h"
+
 @interface EditOrderViewController (){
     int payNum;
+    NSMutableArray *dataSoureArray;
+    NSMutableArray *proviceArray;
     
 }
+
 @property (strong,nonatomic)UILabel *moneyLabel;
 @end
 
@@ -25,10 +31,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     payNum = 1;
+    dataSoureArray = [NSMutableArray array];
+    proviceArray = [NSMutableArray array];
     self.title = @"填写订单";
     self.tableView.backgroundColor =  [[UIColor alloc]initWithRed:233/255.0 green:233/255.0 blue:233/255.0 alpha:1];
+    [self httpAddressList];
     [self setFootViewForPay];
-    
 }
 
 #pragma mark - 创建底部视图
@@ -46,28 +54,66 @@
     [goPayBtn addTarget: self action:@selector(goPay) forControlEvents:UIControlEventTouchUpInside];
     [buyFooterView addSubview:goPayBtn];
     [self.view addSubview:buyFooterView];
+    
 }
+
 #pragma mark -跳转到付款页面
 -(void)goPay{
-
     ChooseViewController *vc = [[ChooseViewController alloc]initWithTableViewStyle:1];
     _goodModel.good_price = [NSString stringWithFormat:@"%.2f",[_goodModel.good_price floatValue]*payNum];
     vc.goodModel = _goodModel;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)httpAddressList
+{
+    __weak EditOrderViewController *weakSelf = self;
+    [HttpHelper receiveAddressListWithUserId:[ShareManager shareInstance].userinfo.id
+                                     success:^(NSDictionary *resultDic){
+                                        
+                                         if ([[resultDic objectForKey:@"status"] integerValue] == 0) {
+                                             [weakSelf handleloadAddAddressResult:resultDic];
+                                         }else
+                                         {
+                                             [Tool showPromptContent:[resultDic objectForKey:@"desc"] onView:self.view];
+                                         }
+                                     }fail:^(NSString *decretion){
+                                         [Tool showPromptContent:@"网络出错了" onView:self.view];
+                                     }];
+}
+
+- (void)handleloadAddAddressResult:(NSDictionary *)resultDic
+{
+    NSArray *resourceArray = [[resultDic objectForKey:@"data"] objectForKey:@"addressList"];
+    if (resourceArray && resourceArray.count > 0)
+    {
+        if (dataSoureArray.count > 0) {
+            [dataSoureArray removeAllObjects];
+        }
+        for (NSDictionary *dic in resourceArray)
+        {
+            RecoverAddressListInfo *info = [dic objectByClass:[RecoverAddressListInfo class]];
+//            if ([info.is_default isEqualToString:@"y"]) {
+                 [dataSoureArray addObject:info];
+//            }
+        }
+    }else{
+        [dataSoureArray removeAllObjects];
+        [Tool showPromptContent:@"暂无数据" onView:self.view];
+    }
+    [self.tableView reloadData];
+}
+
+
 #pragma mark tableViewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    
     return 4;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-   
         return 1;
-    
 }
 
 //创建并显示每行的内容
@@ -77,7 +123,7 @@
     switch (indexPath.section) {
         case 0:
         {
-            if ([ShareManager shareInstance].userinfo) {
+            if (dataSoureArray.count>0) {
                 EditAddressCell *cell = nil;
                 cell = [tableView dequeueReusableCellWithIdentifier:@"EditAddressCell"];
                 if (cell == nil)
@@ -85,11 +131,10 @@
                     NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"EditAddressCell" owner:nil options:nil];
                     cell = [nib objectAtIndex:0];
                     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                    
                 }
-                
+                RecoverAddressListInfo *info = [dataSoureArray objectAtIndex:0];
+                cell.addressModel = info;
                 return cell;
-                
             }else{
                 UITableViewCell *cell = nil;
                 cell = [tableView dequeueReusableCellWithIdentifier:@"AddressCell"];
@@ -97,7 +142,6 @@
                 {
                     cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"AddressCell"];
                     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                    
                 }
                 UILabel *label = [[UILabel alloc]initWithFrame:(CGRectMake(0, 0, ScreenWidth, cell.frame.size.height))];
                 label.text = @"添加地址";
@@ -107,9 +151,7 @@
                 label.backgroundColor = [UIColor whiteColor];
                 [cell addSubview:label];
                 return cell;
-            
             }
-            
         }
             break;
         case 1:
@@ -121,7 +163,6 @@
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SimGoodCell" owner:nil options:nil];
                 cell = [nib objectAtIndex:0];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                
             }
             cell.goodModel = _goodModel;
             return cell;
@@ -136,9 +177,7 @@
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"HaveCouponCell" owner:nil options:nil];
                 cell = [nib objectAtIndex:0];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                
             }
-            
             return cell;
         }
             break;
@@ -151,15 +190,15 @@
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"GoodPriceCell" owner:nil options:nil];
                 cell = [nib objectAtIndex:0];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                
             }
             cell.goodModel = _goodModel;
             return cell;
-           
         }
             break;
     }
 }
+
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     switch (indexPath.section) {
@@ -179,31 +218,28 @@
             return 140;
             break;
     }
-    
 }
-
-
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.section == 0) {
-        AddAddressViewController *vc = [[AddAddressViewController alloc]initWithTableViewStyle:1];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
+        ReciverAddressViewController *vc = [[ReciverAddressViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];    }
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 10;
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    
     if (section == 3) {
         return 30;
     }else{
-        
         return 0.0001;
     }
 }
+
 - (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     if (section == 3) {
         UIView *footView = [[UIView alloc]initWithFrame:(CGRectMake(0, 0, ScreenWidth, 30))];
@@ -223,10 +259,8 @@
         [footView addSubview:desLabel];
         return  footView;
     }else{
-        
         return nil;
     }
-    
 }
 
 

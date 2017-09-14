@@ -7,7 +7,7 @@
 //
 
 #import "ShareManager.h"
-
+#import "PaySelectedData.h"
 @interface ShareManager()
 
 @end
@@ -95,6 +95,21 @@ static ShareManager *managerSingleton;
         [[NSNotificationCenter defaultCenter] postNotificationName:kReachableNetworkStatusChange object:nil userInfo:nil];
     }
 }
+
+// 登录成功后，保存支付方式配置信息
++ (void)initConfigure:(NSArray *)array
+{
+    NSMutableArray *configureArray = [NSMutableArray array];
+    for (NSDictionary *dict in array) {
+        if ([dict isKindOfClass:[NSDictionary class]]) {
+            PaySelectedData *object = [dict objectByClass:[PaySelectedData class]];
+            [configureArray addObject:object];
+        }
+    }
+    
+    managerSingleton.configureArray = [NSArray arrayWithArray:configureArray];
+}
+
 
 /**
  *  拨打电话

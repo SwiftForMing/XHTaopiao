@@ -19,9 +19,11 @@
 //新浪微博SDK头文件
 #import "WeiboSDK.h"
 
+#import "SPayClient.h"
+
 #import <MeiQiaSDK/MQManager.h>
 @interface AppDelegate ()<WXApiDelegate>
-
+@property (nonatomic, strong) NSOperationQueue *operationQueue;
 @end
 
 @implementation AppDelegate
@@ -58,10 +60,83 @@
     }];
     
     [UIApplication sharedApplication].statusBarHidden = NO;
-
-
+    
+    SPayClientWechatConfigModel *wechatConfigModel = [[SPayClientWechatConfigModel alloc] init];
+    wechatConfigModel.appScheme = @"wxe76985ecf18269b0";
+    wechatConfigModel.wechatAppid = @"wxe76985ecf18269b0";
+    wechatConfigModel.isEnableMTA =YES;
+    
+    
+    //配置微信APP支付
+    [[SPayClient sharedInstance] wechatpPayConfig:wechatConfigModel];
+    [[SPayClient sharedInstance] application:application
+               didFinishLaunchingWithOptions:launchOptions];
+    
+    
+    // 配置支付宝支付
+    SPayClientAlipayConfigModel *alipayConfigModel = [[SPayClientAlipayConfigModel alloc] init];
+    alipayConfigModel.appScheme = @"zhimalegou";
+    [[SPayClient sharedInstance] alipayAppConfig:alipayConfigModel];
+    
+    _operationQueue = [[NSOperationQueue alloc] init];
+    _operationQueue.maxConcurrentOperationCount = 1;
         return YES;
 }
+//#pragma mark - 微信支付回调
+#pragma mark - WXApiDelegate
+
+-(void) onReq:(BaseReq*)req
+{
+    NSLog(@"%@", NSStringFromSelector(_cmd));
+}
+
+-(void)onResp:(BaseResp *)resp{
+
+    NSLog(@"%@", NSStringFromSelector(_cmd));
+    
+    NSString *strTitle;
+    if ([resp isKindOfClass:[SendMessageToWXResp class]]) {
+        strTitle = [NSString stringWithFormat:@"发送媒体消息结果"];
+    }
+    if ([resp isKindOfClass:[PayResp class]]) {
+        strTitle = [NSString stringWithFormat:@"支付结果"];
+        
+        int isSuccess  = 0;
+        
+        switch (resp.errCode) {
+            case WXSuccess:
+            {
+                NSLog(@"支付成功!");
+                isSuccess = 0;
+            }
+                break;
+            case WXErrCodeCommon:
+                isSuccess = -1;
+                break;
+            case WXErrCodeUserCancel:
+                isSuccess = -2;
+                break;
+            case WXErrCodeSentFail:
+                isSuccess = -3;
+                break;
+            case WXErrCodeUnsupport:
+                isSuccess = -5;
+                break;
+            case WXErrCodeAuthDeny:
+                isSuccess = -4;
+                break;
+            default:
+                break;
+        }
+        
+        NSDictionary *parameters = nil;
+        parameters = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d",isSuccess],@"statue",nil];
+        //登录成功通知
+        [[NSNotificationCenter defaultCenter] postNotificationName:kWeiXinPayNotif object:nil userInfo:parameters];
+        
+    }
+}
+
 
 #pragma mark -
 

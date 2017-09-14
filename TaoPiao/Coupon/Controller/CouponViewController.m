@@ -122,7 +122,7 @@
         }
         for (NSDictionary *dic in goodArray)
         {
-            MLog(@"goodArray:%@",dic);
+           
             CouponModel *info = [dic objectByClass:[CouponModel class]];
             [dataArray addObject:info];
         }

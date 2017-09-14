@@ -9,6 +9,8 @@
 #import "ChooseViewController.h"
 #import "ChoosePayWayCell.h"
 #import "HaveCouponCell.h"
+#import "PayTableViewController.h"
+#import "CZViewController.h"
 @interface ChooseViewController (){
 
     NSString *ZFBSelectImage;
@@ -133,9 +135,13 @@
 -(void)payForGood{
     if ([ZFBSelectImage isEqualToString:@"icon_checkbox_circle_selected"]) {
         payWay = @"支付宝支付";
-    }else{
+           }else{
         payWay = @"微信支付";
     }
+    
+    CZViewController *vc = [[CZViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+
     MLog(@"payWay%@",payWay);
 
 }

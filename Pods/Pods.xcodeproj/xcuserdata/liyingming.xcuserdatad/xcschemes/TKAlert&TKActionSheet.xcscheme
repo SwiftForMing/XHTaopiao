@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '7109580C3B9E3B0714686105C3AB37AA'
+               BlueprintIdentifier = 'D230FD73C894CD3DB87E19C328386D27'
                BlueprintName = 'TKAlert&amp;TKActionSheet'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libTKAlert&amp;TKActionSheet.a'>
