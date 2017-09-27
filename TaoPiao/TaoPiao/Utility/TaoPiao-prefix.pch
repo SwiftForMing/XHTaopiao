@@ -1,0 +1,182 @@
+//
+//  TaoPiao-prefix.pch
+//  TaoPiao
+//
+//  Created by 黎应明 on 2017/8/30.
+//  Copyright © 2017年 黎应明. All rights reserved.
+//
+
+#ifndef TaoPiao_prefix_pch
+#define TaoPiao_prefix_pch
+
+
+
+#endif /* TaoPiao_prefix_pch */
+
+#define FullScreen   [[UIScreen mainScreen] bounds]
+#define PublicImage(imageName) [Tool imageInPublic:(imageName)]
+
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
+#define UIColorFromRGBA(rgbValue, alphaValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:(float)(alphaValue)]
+//版本校验判断是否正在进行苹果审核
+#define kShouldVerifyVersion @"kShouldVerifyVersion"
+
+/******* 分享链接 *******/
+
+#define ShareLinkItunes @"https://itunes.apple.com/cn/app/id1206242644?mt=8"
+#define ShareDownloadLink @"http://legou.zhimalegou.com"
+
+#define kInviteLinkPrefix @"http://legouduobao.zhimalegou.com/GetTreasureAppSesame/invite"
+
+/******* 消息通知名称 *******/
+#define kReachableNetworkStatusChange @"ReachableNetworkStatusChange" //网络状态改变
+
+//登录成功
+#define kLoginSuccess @"LoginSuccess"
+#define kQuitLoginSuccess @"QuitLoginSuccess"
+#define kPaySuccess @"PaySuccess"
+#define kTimeValue 60
+#define MARGIN 16
+//更新个人信息
+#define kUpdateUserInfo @"kUpdateUserInfo"
+//关于我们
+#define Wap_AboutDuobao @""
+//获取我的订单列表
+#define URL_GetMyOrderList @"appInterface/getMyOrderList.jhtml"
+
+//获取结算详情
+#define URL_GetOrderDetail @"appInterface/getOrderPayData.jhtml"
+//获取收货地址列表
+#define URL_GetAdressList @"appInterface/getUserAddressListData.jhtml"
+
+//修改默认地址接口
+#define URL_ChangeDefaultAddress @"appInterface/changeDefaultAddress.jhtml"
+
+//新增收货地址
+#define URL_AddAddress @"appInterface/saveAddress.jhtml"
+
+//获取城市列表
+#define URL_GetCityInfo @"appInterface/getCityByProvince.jhtml"
+
+//删除地址
+#define URL_DeleteMyAddress @"appInterface/delAddress.jhtml"
+//获取用户信息
+#define URL_GetUserInfo @"appInterface/getUserData.jhtml"
+//修改用户信息
+#define URL_ChangeUserInfo @"appInterface/updateUser.jhtml"
+
+/******* 微信支付、支付宝账号信息 *******/
+//充值记录
+#define URL_GetCZReord @"appInterface/getMyAlreadyPayList.jhtml"
+//在浏览器中支付成功
+#define kPaySuccessInSafari @"kPaySuccessInSafari"
+//充值接口
+#define URL_PayCZ @"appInterface/rechargeInMoney.jhtml"
+
+//跳转支付页面
+#define Wap_PayMoneyView @"appInterface/paymentGoodsFightIndex.jhtml?"
+// 支付成功
+#define kPayNotification    @"kPayNotification"
+//微信支付回调
+#define kWeiXinPayNotif @"kWeiXinPayNotif"
+
+#define kAlipayNotification @"kAlipayNotification"
+
+//key值
+#define WeiXinKey @"wx0fb9a92d096ce238"
+#define SpayWeixinKey @"wxe773d17c638d319a"
+//密钥
+#define WeiXinSecret @"3e8ff3864b602e56239e5c5b628a6ba4"
+
+//商户号
+#define WeiXinPiD @"1392987902"
+
+//加密用的key
+#define WeiXinAppKey @"168fde4e9c2e2bb619514ecea14zabao"
+
+
+
+//支付宝pid
+#define AliPayId @"2017091908816908"//pid
+
+#define AliPayAccount @"xiheng@aliyun.com"//收款账户
+
+//秘钥
+#define AliPayPrivateKey @"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAl4s8E3DCFRHxTWPoT1xCrzjLPfJ0Bt8Sqi6/G9BPMgoej3g6PzYOGTHju1E/gwGtVulmgjGypW+Bl9pd3d7T2G+lPJi0EFbEc965njf98TQGWJfPnp+zcOAxj2A3Xj2P9bN+YMn8TXMb9XAdq/tLf0DIIFHTCfz0lFiDXM5eJjE1lSCH/uRPlHi0HxCs24pm/n3RRj5cMsEdKluUgrtvnTsWGCVPJkKnsbZ9mrXPonYMc7QpP2S/qfjPb6KcRf8OUl789LRocvMFJokV6MhAtl3z5mEn+2X5z2Jhpwpjui+Gy1TatEt9hh/f3gWIMhBN8E0rrfKF94pS4USqXzyCCQIDAQAB"
+
+
+
+/******* 各平台key值 *******/
+#define JGPushKey @"e5d8ed4f65c2338b804b298b"
+
+#define QQKey @""
+
+#define QQSecret @""
+
+#define WeiBoKey @""
+
+#define WeiBoSecret @""
+
+#define kMeiQiaAppKey @"9295c5b6d27c46505dcd1cbc626c9250"
+
+
+//欢乐豆兑换比例
+//#define ratio
+#define BeanExchangeRate 100
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+
+#import <ShareSDK/ShareSDK.h>
+#import <ShareSDKConnector/ShareSDKConnector.h>
+#import "WXApi.h"
+#import "WeiboSDK.h"
+#import <TencentOpenAPI/QQApiInterface.h>
+#import <TencentOpenAPI/TencentOAuth.h>
+
+#import "NSString+WPAttributedMarkup.h"
+#import "WPAttributedStyleAction.h"
+
+#import <AlipaySDK/AlipaySDK.h>
+#import "ServerProtocol.h"
+#import "HttpHelper.h"
+#import "MBProgressHUD.h"
+#import "JPUSHService.h"
+#import "MJRefresh.h"
+#import "MJRefreshComponent.h"
+#import "IQKeyboardManager.h"
+#import "UIView+Additions.h"
+#import "UIView+Extend.h"
+#import "UIView+YYAdd.h"
+#import "NSObject+LKDBHelper.h"
+#import "NSDictionary+unicode.h"
+//#import "UIView+TYAlertView.h"
+#import "UIView+WhenTappedBlocks.h"
+#import "UIButton+TopDown.h"
+#import "JSONKit.h"
+#import "SDiPhoneVersion.h"
+//#import "UIImageView+WebCache.h"
+#import "UIImageView+WebCache.h"
+#import "UIImage+Color.h"
+#import "URLDefine.h"
+#import "MingLog.h"
+#import "NSDiction+External.h"
+#import "ShareManager.h"
+#import "NSDate-Utilities.h"
+#import "Tool.h"
+#import "Colours.h"
+
+//#import "Order.h"
+//美洽
+#import "MQChatViewManager.h"
+#import "MQChatDeviceUtil.h"
+#import <MeiQiaSDK/MeiQiaSDK.h>
+#import "NSArray+MQFunctional.h"
+#import "MQBundleUtil.h"
+#import "MQAssetUtil.h"
+#import "MQImageUtil.h"
+
+#import "TypeDefine.h"
+#endif

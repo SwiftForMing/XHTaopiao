@@ -1,0 +1,77 @@
+PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - BTBadgeView (1.3)
+  - DLAlertView (1.2.5)
+  - FMDB (2.7.2):
+    - FMDB/standard (= 2.7.2)
+  - FMDB/standard (2.7.2)
+  - JPush (2.1.9)
+  - LDProgressView (1.2.1)
+  - LKDBHelper (2.1.9):
+    - FMDB
+  - Masonry (1.0.2)
+  - MBProgressHUD (0.9.2)
+  - MJRefresh (3.1.12)
+  - MZTimerLabel (0.5.4)
+  - ReactiveCocoa (2.1.8):
+    - ReactiveCocoa/Core (= 2.1.8)
+    - ReactiveCocoa/no-arc (= 2.1.8)
+  - ReactiveCocoa/Core (2.1.8):
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/no-arc (2.1.8)
+  - SDiPhoneVersion (1.1.2)
+  - SDWebImage (3.7.6):
+    - SDWebImage/Core (= 3.7.6)
+  - SDWebImage/Core (3.7.6)
+  - TKAlert&TKActionSheet (1.0.24)
+
+DEPENDENCIES:
+  - AFNetworking (~> 3.1.0)
+  - BTBadgeView (~> 1.3)
+  - DLAlertView (~> 1.2.5)
+  - JPush (~> 2.1.6)
+  - LDProgressView (~> 1.2.1)
+  - LKDBHelper (~> 2.1.8)
+  - Masonry (~> 1.0.0)
+  - MBProgressHUD (~> 0.8)
+  - MJRefresh (~> 3.1.12)
+  - MZTimerLabel (~> 0.5.4)
+  - ReactiveCocoa (= 2.1.8)
+  - SDiPhoneVersion (~> 1.1.2)
+  - SDWebImage (~> 3.7.6)
+  - TKAlert&TKActionSheet (~> 1.0.23)
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  BTBadgeView: 4a3cc26f6c19d369f8a0c6fc5dd2293ab19a7619
+  DLAlertView: 774c1242cc854177fdc07634ed3f8c250a38864d
+  FMDB: 6198a90e7b6900cfc046e6bc0ef6ebb7be9236aa
+  JPush: 8bccf709ace4318a8e7008cc4fab42b706bfad46
+  LDProgressView: f6afc7c30d2a9edf33001515f3189338567a32d2
+  LKDBHelper: 78e6c0de99f45375892223a334535d745a123dbd
+  Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
+  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
+  MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
+  MZTimerLabel: cd9bfb9304540ef2a9e163384fca9c978f0dbf83
+  ReactiveCocoa: f89f2e009a87951b50321bf9feb958823fcc617e
+  SDiPhoneVersion: c52245ccaab8142701e2e7fb8f0391ba3f255b76
+  SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
+  TKAlert&TKActionSheet: aac6b3a78faa9cdf2a0a10df34235a875f1c3661
+
+PODFILE CHECKSUM: 3be70c1f108a04fc7db03154528b15fe0d265c63
+
+COCOAPODS: 1.3.1
